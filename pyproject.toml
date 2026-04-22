@@ -1,0 +1,90 @@
+[project]
+name = "orbital-shepherd"
+version = "0.1.0"
+description = "Phase 1 engineering foundation for Orbital Shepherd."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.116,<1",
+  "gymnasium>=1.1,<2",
+  "jsonschema>=4.23,<5",
+  "ortools>=9.10,<10",
+  "pydantic>=2.11,<3",
+  "pyyaml>=6.0,<7",
+  "ray[rllib]>=2.49,<3",
+  "referencing>=0.35,<1",
+  "torch>=2.8,<3",
+  "uvicorn>=0.35,<1",
+]
+
+[dependency-groups]
+dev = [
+  "httpx>=0.28,<1",
+  "mypy>=1.11,<2",
+  "pytest>=9,<10",
+  "ruff>=0.15,<1",
+]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+minversion = "8.0"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = [
+  "apps/api/src",
+  "packages/contracts/python/src",
+  "packages/core/src",
+  "packages/ephemeris/src",
+  "packages/scenario_engine/src",
+  "packages/opportunity_builder/src",
+  "packages/region_builder/src",
+  "packages/geo_artifacts/src",
+  "packages/routing_engine/src",
+  "packages/tactical_scenario_engine/src",
+  "packages/ground_env/src",
+  "packages/tactical_baselines/src",
+  "packages/tactical_metrics/src",
+  "packages/escalation_bridge/src",
+  "packages/env_runtime/src",
+  "packages/benchmark/src",
+  "packages/policy_models/src",
+  "packages/training/src",
+  "tests",
+]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "UP"]
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_untyped_defs = true
+files = [
+  "apps/api/src",
+  "packages/contracts/python/src",
+  "packages/core/src",
+  "packages/ephemeris/src",
+  "packages/scenario_engine/src",
+  "packages/opportunity_builder/src",
+  "packages/region_builder/src",
+  "packages/geo_artifacts/src",
+  "packages/routing_engine/src",
+  "packages/tactical_scenario_engine/src",
+  "packages/ground_env/src",
+  "packages/tactical_baselines/src",
+  "packages/tactical_metrics/src",
+  "packages/escalation_bridge/src",
+  "packages/env_runtime/src",
+  "packages/benchmark/src",
+  "packages/policy_models/src",
+  "packages/training/src",
+  "tests",
+]
+mypy_path = "$MYPY_CONFIG_FILE_DIR/apps/api/src,$MYPY_CONFIG_FILE_DIR/packages/contracts/python/src,$MYPY_CONFIG_FILE_DIR/packages/core/src,$MYPY_CONFIG_FILE_DIR/packages/ephemeris/src,$MYPY_CONFIG_FILE_DIR/packages/scenario_engine/src,$MYPY_CONFIG_FILE_DIR/packages/opportunity_builder/src,$MYPY_CONFIG_FILE_DIR/packages/region_builder/src,$MYPY_CONFIG_FILE_DIR/packages/geo_artifacts/src,$MYPY_CONFIG_FILE_DIR/packages/routing_engine/src,$MYPY_CONFIG_FILE_DIR/packages/tactical_scenario_engine/src,$MYPY_CONFIG_FILE_DIR/packages/ground_env/src,$MYPY_CONFIG_FILE_DIR/packages/tactical_baselines/src,$MYPY_CONFIG_FILE_DIR/packages/tactical_metrics/src,$MYPY_CONFIG_FILE_DIR/packages/escalation_bridge/src,$MYPY_CONFIG_FILE_DIR/packages/env_runtime/src,$MYPY_CONFIG_FILE_DIR/packages/benchmark/src,$MYPY_CONFIG_FILE_DIR/packages/policy_models/src,$MYPY_CONFIG_FILE_DIR/packages/training/src"
+no_implicit_optional = true
+python_version = "3.12"
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_ignores = true

@@ -1,0 +1,131 @@
+{
+  "config_type": "curriculum",
+  "curriculum_id": "curriculum:phase2-foundation-v1",
+  "benchmark_id": "osbench-phase2-foundation-v1",
+  "split_registry_path": "training/configs/curriculum/phase2_splits.yaml",
+  "stages": [
+    {
+      "stage_id": "curriculum:phase2:stage1-sparse-bootstrap",
+      "display_name": "Sparse Bootstrap",
+      "description": "Warm-start on low-contention orbital-only scenarios before adding denser incident pressure.",
+      "policy_splits": [
+        "train"
+      ],
+      "evaluation_splits": [
+        "val"
+      ],
+      "policy_family_allowlist": [
+        "sparse_frontier"
+      ],
+      "evaluation_family_allowlist": [
+        "sparse_frontier"
+      ],
+      "difficulty_tiers": [
+        1
+      ],
+      "algorithms": [
+        "behavior_cloning"
+      ],
+      "max_stage_episodes": 20000
+    },
+    {
+      "stage_id": "curriculum:phase2:stage2-incident-pressure",
+      "display_name": "Incident Pressure",
+      "description": "Add burst and cloud-trap families while keeping training single-agent and orbital-only.",
+      "policy_splits": [
+        "train"
+      ],
+      "evaluation_splits": [
+        "val"
+      ],
+      "policy_family_allowlist": [
+        "sparse_frontier",
+        "burst_outbreak",
+        "cloud_trap"
+      ],
+      "evaluation_family_allowlist": [
+        "sparse_frontier",
+        "burst_outbreak",
+        "cloud_trap"
+      ],
+      "difficulty_tiers": [
+        1,
+        2
+      ],
+      "algorithms": [
+        "behavior_cloning",
+        "ppo"
+      ],
+      "max_stage_episodes": 60000
+    },
+    {
+      "stage_id": "curriculum:phase2:stage3-downlink-pressure",
+      "display_name": "Downlink Pressure",
+      "description": "Introduce downlink crunch without leaking outage-only OOD families into training.",
+      "policy_splits": [
+        "train"
+      ],
+      "evaluation_splits": [
+        "val",
+        "test"
+      ],
+      "policy_family_allowlist": [
+        "sparse_frontier",
+        "burst_outbreak",
+        "cloud_trap",
+        "downlink_crunch"
+      ],
+      "evaluation_family_allowlist": [
+        "sparse_frontier",
+        "burst_outbreak",
+        "cloud_trap",
+        "downlink_crunch"
+      ],
+      "difficulty_tiers": [
+        2,
+        3
+      ],
+      "algorithms": [
+        "ppo"
+      ],
+      "max_stage_episodes": 120000
+    },
+    {
+      "stage_id": "curriculum:phase2:stage4-generalization-gate",
+      "display_name": "Generalization Gate",
+      "description": "Freeze the train split to in-distribution families and require evaluation on held-out ID plus OOD robustness families.",
+      "policy_splits": [
+        "train"
+      ],
+      "evaluation_splits": [
+        "val",
+        "test",
+        "ood"
+      ],
+      "policy_family_allowlist": [
+        "sparse_frontier",
+        "burst_outbreak",
+        "cloud_trap",
+        "downlink_crunch"
+      ],
+      "evaluation_family_allowlist": [
+        "sparse_frontier",
+        "burst_outbreak",
+        "cloud_trap",
+        "downlink_crunch",
+        "station_outage",
+        "constellation_degradation"
+      ],
+      "difficulty_tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "algorithms": [
+        "ppo"
+      ],
+      "max_stage_episodes": 160000
+    }
+  ]
+}

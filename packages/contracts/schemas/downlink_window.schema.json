@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/downlink_window.schema.json",
+  "title": "DownlinkWindow",
+  "description": "Compiled candidate downlink contact window.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "window_id",
+    "satellite_id",
+    "station_id",
+    "start_time_utc",
+    "end_time_utc",
+    "max_volume_mb",
+    "expected_rate_mbps",
+    "outage_risk"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "window_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "satellite_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "station_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "start_time_utc": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+    },
+    "end_time_utc": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+    },
+    "max_volume_mb": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+    },
+    "expected_rate_mbps": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveNumber"
+    },
+    "outage_risk": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    }
+  },
+  "additionalProperties": false
+}

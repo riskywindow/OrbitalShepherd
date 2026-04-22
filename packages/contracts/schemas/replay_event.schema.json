@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/replay_event.schema.json",
+  "title": "ReplayEvent",
+  "description": "Canonical append-only replay envelope for environment execution.",
+  "$defs": {
+    "base": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "event_id",
+        "episode_id",
+        "event_index",
+        "sim_tick",
+        "sim_time_utc",
+        "event_type",
+        "actor_type",
+        "actor_id",
+        "payload"
+      ],
+      "properties": {
+        "schema_version": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+        },
+        "event_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "episode_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "event_index": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+        },
+        "sim_tick": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+        },
+        "sim_time_utc": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+        },
+        "event_type": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/canonicalReplayEventType"
+        },
+        "actor_type": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/actorType"
+        },
+        "actor_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenarioBundleLoaded": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "scenario_bundle_loaded"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "bundle_id",
+                "scenario_family"
+              ],
+              "properties": {
+                "bundle_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "manifest_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "scenario_family": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "episodeStarted": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "episode_started"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "planner_id",
+                "episode_fingerprint"
+              ],
+              "properties": {
+                "planner_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "episode_fingerprint": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "candidateSetMaterialized": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "candidate_set_materialized"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "observation_opportunity_count",
+                "downlink_window_count"
+              ],
+              "properties": {
+                "observation_opportunity_count": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+                },
+                "downlink_window_count": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+                },
+                "top_target_cell_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "actionMaskEmitted": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "action_mask_emitted"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "legal_action_count"
+              ],
+              "properties": {
+                "legal_action_count": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+                },
+                "mask_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "actionSelected": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "action_selected"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "action_type",
+                "action_ref"
+              ],
+              "properties": {
+                "action_type": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "action_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "score": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "observationExecuted": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "observation_executed"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "opportunity_id",
+                "realized_quality",
+                "usable"
+              ],
+              "properties": {
+                "opportunity_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "realized_quality": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+                },
+                "usable": {
+                  "type": "boolean"
+                },
+                "cloud_fraction": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "downlinkExecuted": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "downlink_executed"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "window_id",
+                "delivered_volume_mb"
+              ],
+              "properties": {
+                "window_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "delivered_volume_mb": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "incidentPacketEmitted": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "incident_packet_emitted"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "packet_id",
+                "incident_id"
+              ],
+              "properties": {
+                "packet_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "incident_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "rewardAssessed": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "reward_assessed"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "total_reward"
+              ],
+              "properties": {
+                "total_reward": {
+                  "type": "number"
+                },
+                "components": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "number"
+                  }
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "episodeEnded": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "episode_ended"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "terminated",
+                "truncated",
+                "mission_utility"
+              ],
+              "properties": {
+                "terminated": {
+                  "type": "boolean"
+                },
+                "truncated": {
+                  "type": "boolean"
+                },
+                "mission_utility": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/scenarioBundleLoaded"
+    },
+    {
+      "$ref": "#/$defs/episodeStarted"
+    },
+    {
+      "$ref": "#/$defs/candidateSetMaterialized"
+    },
+    {
+      "$ref": "#/$defs/actionMaskEmitted"
+    },
+    {
+      "$ref": "#/$defs/actionSelected"
+    },
+    {
+      "$ref": "#/$defs/observationExecuted"
+    },
+    {
+      "$ref": "#/$defs/downlinkExecuted"
+    },
+    {
+      "$ref": "#/$defs/incidentPacketEmitted"
+    },
+    {
+      "$ref": "#/$defs/rewardAssessed"
+    },
+    {
+      "$ref": "#/$defs/episodeEnded"
+    }
+  ]
+}

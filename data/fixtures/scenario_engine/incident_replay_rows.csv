@@ -1,0 +1,14 @@
+template_id,target_h3_cell,ignition_offset_minutes,urgency_score,confidence,estimated_area_ha,state
+fx:sparse-ca-001,8928308280fffff,150,0.88,0.84,120.0,active
+fx:sparse-or-001,8928d54250bffff,590,0.72,0.78,92.0,active
+fx:sparse-bc-001,892f5ab6e13ffff,430,0.67,0.74,74.0,active
+fx:sparse-co-001,88268cda81fffff,760,0.7,0.76,83.0,active
+fx:burst-west-001,8928341aec3ffff,180,0.95,0.9,210.0,active
+fx:burst-west-002,8928341aec3ffff,215,0.92,0.88,184.0,active
+fx:burst-west-003,8928d54250bffff,225,0.9,0.86,142.0,active
+fx:burst-west-004,8929a1d7573ffff,238,0.87,0.82,116.0,active
+fx:burst-west-005,8928d54250bffff,260,0.85,0.8,132.0,active
+fx:cloudtrap-ca-001,8928308280fffff,120,0.94,0.89,162.0,active
+fx:cloudtrap-ca-002,8928341aec3ffff,190,0.91,0.85,141.0,active
+fx:cloudtrap-mountain-001,88268cda81fffff,150,0.89,0.82,126.0,active
+fx:cloudtrap-mountain-002,8929a1d7573ffff,225,0.86,0.8,118.0,active

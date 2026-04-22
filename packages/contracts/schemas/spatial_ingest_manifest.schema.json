@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/spatial_ingest_manifest.schema.json",
+  "title": "SpatialIngestManifest",
+  "description": "Immutable provenance record for a spatial layer ingested into the tactical region builder.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "spatial_ingest_id",
+    "region_id",
+    "source_name",
+    "layer_type",
+    "source_uri",
+    "source_fingerprint",
+    "transform_fingerprint",
+    "ingest_time_utc",
+    "coverage_bounds",
+    "feature_count"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "spatial_ingest_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "region_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "source_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "layer_type": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/spatialLayerType"
+    },
+    "source_uri": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "transform_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "ingest_time_utc": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+    },
+    "coverage_bounds": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84BoundingBox"
+    },
+    "feature_count": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

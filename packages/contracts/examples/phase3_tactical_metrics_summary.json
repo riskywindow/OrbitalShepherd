@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "summary_id": "tms:inc-2026-08-14-ca-001:seed-42",
+  "tactical_bundle_id": "tsb:inc-2026-08-14-ca-001:seed-42",
+  "episode_id": "ep:tactical:inc-2026-08-14-ca-001:seed-42",
+  "incident_packet_id": "pkt:inc-2026-08-14-ca-001:0001",
+  "summary_fingerprint": "8888888888888888888888888888888888888888888888888888888888888888",
+  "dispatched_unit_count": 1,
+  "arrived_unit_count": 1,
+  "route_completion_ratio": 1.0,
+  "containment_progress": 0.84,
+  "mean_dispatch_latency_seconds": 1560,
+  "facility_utilization_peak": 0.5,
+  "operational_score": 0.71,
+  "metric_components": {
+    "dispatch_latency_score": 0.82,
+    "coverage_score": 0.65,
+    "facility_load_penalty": -0.11
+  }
+}

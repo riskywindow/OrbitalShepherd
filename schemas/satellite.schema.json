@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://schemas/v0.1/satellite.schema.json",
+  "title": "Satellite",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "satellite_id",
+    "name",
+    "norad_catalog_id",
+    "sensor",
+    "downlink",
+    "constraints"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "satellite_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "norad_catalog_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sensor": {
+      "type": "object",
+      "required": [
+        "sensor_id",
+        "swath_km",
+        "quality_nominal"
+      ],
+      "properties": {
+        "sensor_id": {
+          "type": "string"
+        },
+        "swath_km": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "quality_nominal": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "max_off_nadir_deg": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 90
+        },
+        "estimated_data_volume_mb": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "downlink": {
+      "type": "object",
+      "required": [
+        "buffer_capacity_mb",
+        "nominal_downlink_rate_mbps"
+      ],
+      "properties": {
+        "buffer_capacity_mb": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "nominal_downlink_rate_mbps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "constraints": {
+      "type": "object",
+      "required": [
+        "max_retargets_per_orbit"
+      ],
+      "properties": {
+        "max_retargets_per_orbit": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "availability": {
+          "type": "string",
+          "enum": [
+            "nominal",
+            "degraded",
+            "offline"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

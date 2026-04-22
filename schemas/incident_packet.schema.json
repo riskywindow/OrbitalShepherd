@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://schemas/v0.1/incident_packet.schema.json",
+  "title": "IncidentPacket",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "packet_id",
+    "incident_id",
+    "target_cell_id",
+    "observation_time_utc",
+    "downlink_time_utc",
+    "confidence",
+    "urgency_score",
+    "recommended_action"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "packet_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "incident_id": {
+      "type": "string"
+    },
+    "target_cell_id": {
+      "type": "string"
+    },
+    "observation_time_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "downlink_time_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "urgency_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "monitor",
+        "dispatch_recon",
+        "dispatch_ground"
+      ]
+    },
+    "downstream_value_estimate": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "region_manifest_id": "rm:fixture-micro-region:v1",
+  "region_id": "region:fixture-micro-region",
+  "region_name": "Fixture Micro Region",
+  "bounds": {
+    "min_lat": 38.6975,
+    "min_lon": -120.8025,
+    "max_lat": 38.705,
+    "max_lon": -120.7885
+  },
+  "default_cell_size_m": 250,
+  "spatial_ingest_ids": [
+    "si:fixture-micro-region-roads:v1"
+  ],
+  "build_seed": 17,
+  "road_network": {
+    "sources": [
+      {
+        "ingest_id": "si:fixture-micro-region-roads:v1",
+        "source_kind": "fixture_geojson",
+        "source_name": "fixture-micro-osm-roads",
+        "source_uri": "data/fixtures/region_builder/raw/fixture_micro_region_roads.geojson",
+        "fallback_priority": 0,
+        "notes": "Tiny checked-in OSM-style road sample for deterministic CI and laptop builds."
+      }
+    ],
+    "travel_time_defaults": {
+      "default_speed_kph": 35,
+      "speed_kph_by_highway": {
+        "residential": 30,
+        "secondary": 45,
+        "tertiary": 35,
+        "service": 20
+      },
+      "intersection_penalty_seconds": 4
+    }
+  },
+  "facilities": [
+    {
+      "schema_version": "1.0.0",
+      "facility_id": "fac:fixture-station-01",
+      "facility_name": "Fixture Station 01",
+      "facility_type": "station",
+      "location": {
+        "lat": 38.7021,
+        "lon": -120.8013,
+        "alt_m": 610
+      },
+      "availability": "nominal",
+      "capacity_units": 2,
+      "supported_unit_types": [
+        "engine",
+        "crew",
+        "command"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "facility_id": "fac:fixture-staging-01",
+      "facility_name": "Fixture Staging Area 01",
+      "facility_type": "staging_area",
+      "location": {
+        "lat": 38.7034,
+        "lon": -120.7958,
+        "alt_m": 636
+      },
+      "availability": "nominal",
+      "capacity_units": 3,
+      "supported_unit_types": [
+        "engine",
+        "crew",
+        "dozer",
+        "command"
+      ]
+    }
+  ],
+  "asset_features": [
+    {
+      "schema_version": "1.0.0",
+      "asset_id": "asset:fixture-water-tank-01",
+      "asset_name": "Fixture Water Tank",
+      "asset_kind": "water_supply",
+      "geometry_type": "point",
+      "point": {
+        "lat": 38.7008,
+        "lon": -120.7949
+      },
+      "priority_class": "high",
+      "tags": {
+        "category": "poi"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "asset_id": "asset:fixture-school-zone-01",
+      "asset_name": "Fixture School Protection Zone",
+      "asset_kind": "critical_facility_zone",
+      "geometry_type": "polygon",
+      "ring": [
+        {
+          "lat": 38.7015,
+          "lon": -120.799
+        },
+        {
+          "lat": 38.703,
+          "lon": -120.799
+        },
+        {
+          "lat": 38.703,
+          "lon": -120.7964
+        },
+        {
+          "lat": 38.7015,
+          "lon": -120.7964
+        },
+        {
+          "lat": 38.7015,
+          "lon": -120.799
+        }
+      ],
+      "priority_class": "critical",
+      "tags": {
+        "category": "asset_zone"
+      }
+    }
+  ],
+  "h3_cover": {
+    "resolution": 9,
+    "strategy": "explicit",
+    "explicit_cell_ids": [
+      "8928341aec3ffff",
+      "8928308280fffff",
+      "8928d54250bffff"
+    ]
+  },
+  "provenance_notes": [
+    "Fixture region uses a checked-in road extract so tests do not rely on internet access."
+  ],
+  "notes": "Small deterministic tactical region for smoke tests and contract validation."
+}

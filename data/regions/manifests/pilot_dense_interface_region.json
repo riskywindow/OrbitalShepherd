@@ -1,0 +1,147 @@
+{
+  "schema_version": "1.0.0",
+  "region_manifest_id": "rm:pilot-dense-interface-region:v1",
+  "region_id": "region:pilot-dense-interface-region",
+  "region_name": "Pilot Dense Interface Region",
+  "bounds": {
+    "min_lat": 34.088,
+    "min_lon": -118.265,
+    "max_lat": 34.185,
+    "max_lon": -118.145
+  },
+  "default_cell_size_m": 200,
+  "spatial_ingest_ids": [
+    "si:pilot-dense-interface-roads:v1"
+  ],
+  "build_seed": 303,
+  "road_network": {
+    "sources": [
+      {
+        "ingest_id": "si:pilot-dense-interface-roads:v1",
+        "source_kind": "fixture_geojson",
+        "source_name": "pilot-dense-local-extract",
+        "source_uri": "data/fixtures/region_builder/raw/pilot_dense_interface_region_roads.geojson",
+        "fallback_priority": 0,
+        "notes": "Preferred if a checked-in dense interface extract is added later."
+      },
+      {
+        "ingest_id": "si:pilot-dense-interface-roads:v1",
+        "source_kind": "osmnx",
+        "source_name": "pilot-dense-osmnx-download",
+        "source_uri": "osmnx://pilot-dense-interface-region",
+        "fallback_priority": 1,
+        "network_type": "drive",
+        "notes": "Optional OSMnx path for denser urban interface pilot builds."
+      }
+    ],
+    "travel_time_defaults": {
+      "default_speed_kph": 35,
+      "speed_kph_by_highway": {
+        "motorway": 85,
+        "trunk": 75,
+        "primary": 55,
+        "secondary": 45,
+        "tertiary": 35,
+        "residential": 25,
+        "service": 18
+      },
+      "intersection_penalty_seconds": 7
+    }
+  },
+  "facilities": [
+    {
+      "schema_version": "1.0.0",
+      "facility_id": "fac:pilot-dense-station-01",
+      "facility_name": "Pilot Dense Station 01",
+      "facility_type": "station",
+      "location": {
+        "lat": 34.1415,
+        "lon": -118.221,
+        "alt_m": 280
+      },
+      "availability": "nominal",
+      "capacity_units": 8,
+      "supported_unit_types": [
+        "engine",
+        "crew",
+        "command"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "facility_id": "fac:pilot-dense-command-01",
+      "facility_name": "Pilot Dense Command Post 01",
+      "facility_type": "command_post",
+      "location": {
+        "lat": 34.1164,
+        "lon": -118.1875,
+        "alt_m": 250
+      },
+      "availability": "nominal",
+      "capacity_units": 4,
+      "supported_unit_types": [
+        "command",
+        "crew",
+        "engine"
+      ]
+    }
+  ],
+  "asset_features": [
+    {
+      "schema_version": "1.0.0",
+      "asset_id": "asset:pilot-dense-hospital-zone-01",
+      "asset_name": "Pilot Dense Hospital Zone",
+      "asset_kind": "hospital_catchment",
+      "geometry_type": "polygon",
+      "ring": [
+        {
+          "lat": 34.122,
+          "lon": -118.214
+        },
+        {
+          "lat": 34.137,
+          "lon": -118.214
+        },
+        {
+          "lat": 34.137,
+          "lon": -118.184
+        },
+        {
+          "lat": 34.122,
+          "lon": -118.184
+        },
+        {
+          "lat": 34.122,
+          "lon": -118.214
+        }
+      ],
+      "priority_class": "critical",
+      "tags": {
+        "category": "asset_zone"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "asset_id": "asset:pilot-dense-water-point-01",
+      "asset_name": "Pilot Dense Water Point",
+      "asset_kind": "water_supply",
+      "geometry_type": "point",
+      "point": {
+        "lat": 34.1488,
+        "lon": -118.2011
+      },
+      "priority_class": "high",
+      "tags": {
+        "category": "poi"
+      }
+    }
+  ],
+  "h3_cover": {
+    "resolution": 9,
+    "strategy": "bounds"
+  },
+  "provenance_notes": [
+    "Dense interface pilot manifest is meant for optional larger builds and visual demos."
+  ],
+  "notes": "Dense street interface pilot for higher branching tactical routing comparisons."
+}

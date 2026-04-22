@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/incident_packet.schema.json",
+  "title": "IncidentPacket",
+  "description": "Downstream tactical handoff packet emitted after observation and downlink.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "packet_id",
+    "incident_id",
+    "target_cell_id",
+    "observation_time_utc",
+    "downlink_time_utc",
+    "confidence",
+    "urgency_score",
+    "recommended_action"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "packet_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "incident_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "target_cell_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "observation_time_utc": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+    },
+    "downlink_time_utc": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+    },
+    "confidence": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    },
+    "urgency_score": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "monitor",
+        "dispatch_recon",
+        "dispatch_ground"
+      ]
+    },
+    "observation_opportunity_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "downstream_value_estimate": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+    },
+    "summary": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

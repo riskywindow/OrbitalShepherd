@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/observation_opportunity.schema.json",
+  "title": "ObservationOpportunity",
+  "description": "Compiled candidate observation window evaluated by the planner.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "opportunity_id",
+    "satellite_id",
+    "target_cell_id",
+    "start_time_utc",
+    "end_time_utc",
+    "predicted_quality_mean",
+    "predicted_cloud_obstruction_prob",
+    "estimated_data_volume_mb",
+    "slew_cost"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "opportunity_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "satellite_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "target_cell_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "start_time_utc": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+    },
+    "end_time_utc": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+    },
+    "predicted_quality_mean": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    },
+    "predicted_cloud_obstruction_prob": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    },
+    "estimated_data_volume_mb": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveNumber"
+    },
+    "slew_cost": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+    },
+    "incident_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

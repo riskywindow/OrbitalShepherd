@@ -1,0 +1,38 @@
+{
+  "action_count": 1440,
+  "bundle_id": "sb:osbench-phase1-pack-v1:burst_outbreak:seed-201",
+  "episode_fingerprint": "sha256:a8d8ef34c38bf924579cdf98b6cf097b962095675782200012137fdffae1c621",
+  "episode_id": "ep:osbench-phase1-pack-v1:burst_outbreak:seed-201",
+  "episode_seed": 201,
+  "metrics": {
+    "cloud_waste_rate": 1.0,
+    "downlink_latency_seconds": {
+      "count": 0,
+      "mean": null,
+      "median": null,
+      "p90": null,
+      "values": []
+    },
+    "missed_urgent_incident_count": 5,
+    "missed_urgent_incident_rate": 1.0,
+    "mission_utility": -13.136059,
+    "observation_commit_count": 11,
+    "opportunity_utilization_efficiency": 0.0,
+    "time_to_first_useful_observation_seconds": {
+      "count": 0,
+      "mean": null,
+      "median": null,
+      "p90": null,
+      "values": []
+    },
+    "urgent_incident_count": 5,
+    "useful_observation_value_captured": 0.0,
+    "useful_packet_count": 0
+  },
+  "planner_id": "urgency_greedy",
+  "planner_version": "phase1-v1",
+  "replay_fingerprint": "sha256:e6d8baab28cf5c848a98fadc5e312ef103ec5d7759f171ab5a8a5344ea422a26",
+  "replay_path": "data/replays/phase1-pack-v1/urgency_greedy/sb--osbench-phase1-pack-v1--burst_outbreak--seed-201.ndjson",
+  "scenario_family": "burst_outbreak",
+  "summary_path": "data/benchmarks/phase1-pack-v1/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--burst_outbreak--seed-201.json"
+}

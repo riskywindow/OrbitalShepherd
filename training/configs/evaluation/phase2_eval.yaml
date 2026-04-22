@@ -1,0 +1,52 @@
+{
+  "config_type": "evaluation",
+  "evaluation_id": "eval:phase2-foundation-v1",
+  "benchmark_id": "osbench-phase2-foundation-v1",
+  "split_order": [
+    "val",
+    "test",
+    "ood"
+  ],
+  "planner_agnostic_metrics": [
+    "time_to_first_useful_observation_seconds",
+    "useful_observation_value_captured",
+    "cloud_waste_rate",
+    "downlink_latency_seconds",
+    "missed_urgent_incident_rate",
+    "opportunity_utilization_efficiency",
+    "mission_utility"
+  ],
+  "compare_against_baselines": [
+    "random_valid_action",
+    "urgency_greedy"
+  ],
+  "bootstrap_replicates": 1000,
+  "confidence_level": 0.95,
+  "notable_episode_count": 5,
+  "primary_ranking_metric": "mission_utility",
+  "report_formats": [
+    "json",
+    "markdown",
+    "csv"
+  ],
+  "artifact_layout": {
+    "dataset_root": "data/training/datasets",
+    "checkpoint_root": "data/training/checkpoints",
+    "report_root": "data/training/reports",
+    "manifest_root": "data/training/manifests",
+    "scenario_pack_root": "data/training/scenario_packs"
+  },
+  "wandb": {
+    "enabled": false,
+    "mode": "disabled",
+    "project": "orbital-shepherd-phase2",
+    "entity": null,
+    "group": "phase2-local",
+    "tags": [
+      "phase2",
+      "evaluation",
+      "orbital-only"
+    ]
+  },
+  "emit_reward_audit": true
+}

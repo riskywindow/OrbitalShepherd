@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/facility.schema.json",
+  "title": "Facility",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "facility_id",
+    "facility_name",
+    "facility_type",
+    "location",
+    "availability",
+    "capacity_units",
+    "supported_unit_types"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "facility_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "facility_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "facility_type": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/facilityType"
+    },
+    "location": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84GroundPoint"
+    },
+    "availability": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/availability"
+    },
+    "capacity_units": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+    },
+    "supported_unit_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/dispatchUnitType"
+      }
+    }
+  },
+  "additionalProperties": false
+}

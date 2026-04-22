@@ -1,0 +1,90 @@
+stages:
+  phase2_training_pack:
+    cmd: python scripts/phase2_training.py build-training-pack --output-dir data/training/scenario_packs/osbench-phase2-foundation-v1 --manifest-output data/training/manifests/phase2-training-pack-manifest.json --split-output training/configs/curriculum/phase2_splits.yaml
+    deps:
+      - scripts/phase2_training.py
+      - packages/scenario_engine/src/orbital_shepherd_scenario_engine
+      - packages/training/src/orbital_shepherd_training
+      - data/fixtures
+      - training/configs/reward/phase2_reward.yaml
+      - training/configs/curriculum/phase2_curriculum.yaml
+      - training/configs/model/phase2_policy.yaml
+      - training/configs/bc/phase2_bc_smoke.yaml
+      - training/configs/ppo/phase2_ppo_bc_warmstart_smoke.yaml
+      - training/configs/evaluation/phase2_eval.yaml
+    outs:
+      - data/training/scenario_packs/osbench-phase2-foundation-v1
+      - data/training/manifests/phase2-training-pack-manifest.json
+      - training/configs/curriculum/phase2_splits.yaml
+
+  phase2_training_pack_validate:
+    cmd: python scripts/phase2_training.py validate-training-pack --input-dir data/training/scenario_packs/osbench-phase2-foundation-v1 --manifest data/training/manifests/phase2-training-pack-manifest.json
+    deps:
+      - data/training/scenario_packs/osbench-phase2-foundation-v1
+      - data/training/manifests/phase2-training-pack-manifest.json
+      - training/configs/curriculum/phase2_splits.yaml
+      - packages/scenario_engine/src/orbital_shepherd_scenario_engine
+      - packages/training/src/orbital_shepherd_training
+
+  phase2_offline_dataset:
+    cmd: python scripts/phase2_training.py build-offline-dataset --training-pack-manifest data/training/manifests/phase2-training-pack-manifest.json --split-registry training/configs/curriculum/phase2_splits.yaml --output-root data/training/datasets/osbench-phase2-foundation-v1 --manifest-root data/training/manifests --planner urgency_greedy --split train --split val --top-k 64 --limit-bundles-per-split 1 --build-id offbuild:phase2:bc-bootstrap-smoke-v1
+    deps:
+      - scripts/phase2_training.py
+      - data/training/manifests/phase2-training-pack-manifest.json
+      - training/configs/curriculum/phase2_splits.yaml
+      - packages/benchmark/src/orbital_shepherd_benchmark
+      - packages/training/src/orbital_shepherd_training
+    outs:
+      - data/training/datasets/osbench-phase2-foundation-v1/offbuild--phase2--bc-bootstrap-smoke-v1
+      - data/training/manifests/offbuild--phase2--bc-bootstrap-smoke-v1.json
+
+  phase2_bc:
+    cmd: python scripts/phase2_training.py train-bc --config training/configs/bc/phase2_bc_smoke.yaml --best-checkpoint-alias data/training/manifests/phase2-bc-latest.json
+    deps:
+      - scripts/phase2_training.py
+      - training/configs/bc/phase2_bc_smoke.yaml
+      - training/configs/model/phase2_policy.yaml
+      - data/training/manifests/phase2-training-pack-manifest.json
+      - training/configs/curriculum/phase2_splits.yaml
+      - packages/policy_models/src/orbital_shepherd_policy_models
+      - packages/training/src/orbital_shepherd_training
+    outs:
+      - data/training/manifests/phase2-bc-latest.json
+
+  phase2_ppo:
+    cmd: python scripts/phase2_training.py train-ppo --config training/configs/ppo/phase2_ppo_bc_warmstart_smoke.yaml --latest-checkpoint-alias data/training/manifests/phase2-ppo-latest.json
+    deps:
+      - scripts/phase2_training.py
+      - training/configs/ppo/phase2_ppo_bc_warmstart_smoke.yaml
+      - training/configs/model/phase2_policy.yaml
+      - data/training/manifests/phase2-bc-latest.json
+      - data/training/manifests/phase2-training-pack-manifest.json
+      - training/configs/curriculum/phase2_splits.yaml
+      - packages/policy_models/src/orbital_shepherd_policy_models
+      - packages/training/src/orbital_shepherd_training
+    outs:
+      - data/training/manifests/phase2-ppo-latest.json
+
+  phase2_evaluation:
+    cmd: python scripts/phase2_demo.py evaluate --checkpoint-manifest data/training/manifests/phase2-ppo-latest.json --policy-label ppo_from_bc_smoke --run-id evalrun--phase2-heldout-smoke-v1 --limit-bundles-per-split 1
+    deps:
+      - scripts/phase2_demo.py
+      - data/training/manifests/phase2-ppo-latest.json
+      - data/training/manifests/phase2-training-pack-manifest.json
+      - training/configs/curriculum/phase2_splits.yaml
+      - training/configs/evaluation/phase2_eval.yaml
+      - packages/benchmark/src/orbital_shepherd_benchmark
+      - packages/training/src/orbital_shepherd_training
+    outs:
+      - data/training/reports/evalrun--phase2-heldout-smoke-v1
+      - data/training/manifests/evalrun--phase2-heldout-smoke-v1
+
+  phase2_demo_defaults:
+    cmd: python scripts/phase2_demo.py prepare --checkpoint-manifest data/training/manifests/phase2-ppo-latest.json --baseline-id urgency_greedy
+    deps:
+      - scripts/phase2_demo.py
+      - apps/api/src/orbital_shepherd_api
+      - data/training/manifests/phase2-ppo-latest.json
+      - data/training/reports/evalrun--phase2-heldout-smoke-v1/summary.json
+    outs:
+      - data/demo/phase2-defaults.json

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://schemas/v0.1/observation_opportunity.schema.json",
+  "title": "ObservationOpportunity",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "opportunity_id",
+    "satellite_id",
+    "target_cell_id",
+    "start_time_utc",
+    "end_time_utc",
+    "predicted_quality_mean",
+    "predicted_cloud_obstruction_prob",
+    "estimated_data_volume_mb",
+    "slew_cost"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "opportunity_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "satellite_id": {
+      "type": "string"
+    },
+    "target_cell_id": {
+      "type": "string"
+    },
+    "start_time_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_time_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "predicted_quality_mean": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "predicted_cloud_obstruction_prob": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "estimated_data_volume_mb": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "slew_cost": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": false
+}

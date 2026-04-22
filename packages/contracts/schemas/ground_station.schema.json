@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/ground_station.schema.json",
+  "title": "GroundStation",
+  "description": "Ground station contact and downlink capabilities.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "station_id",
+    "name",
+    "location",
+    "capabilities"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "station_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "location": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84GroundPoint"
+    },
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "max_concurrent_contacts",
+        "downlink_rate_mbps",
+        "availability"
+      ],
+      "properties": {
+        "max_concurrent_contacts": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+        },
+        "downlink_rate_mbps": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveNumber"
+        },
+        "availability": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/availability"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

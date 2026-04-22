@@ -1,0 +1,340 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/common.schema.json",
+  "title": "Orbital Shepherd Common Schema Definitions",
+  "$defs": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "Canonical Orbital Shepherd v1 contract version."
+    },
+    "namespacedId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$",
+      "description": "Lower-case namespaced identifier such as sb:cloud-trap:seed-42."
+    },
+    "utcTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$",
+      "description": "RFC 3339 UTC timestamp with a trailing Z."
+    },
+    "nonNegativeInteger": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "nonNegativeNumber": {
+      "type": "number",
+      "minimum": 0
+    },
+    "positiveNumber": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "probability": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "availability": {
+      "type": "string",
+      "enum": [
+        "nominal",
+        "degraded",
+        "offline"
+      ]
+    },
+    "priorityClass": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "actorType": {
+      "type": "string",
+      "enum": [
+        "system",
+        "planner",
+        "satellite",
+        "ground_station",
+        "metric_engine"
+      ]
+    },
+    "canonicalReplayEventType": {
+      "type": "string",
+      "enum": [
+        "scenario_bundle_loaded",
+        "episode_started",
+        "candidate_set_materialized",
+        "action_mask_emitted",
+        "action_selected",
+        "observation_executed",
+        "downlink_executed",
+        "incident_packet_emitted",
+        "reward_assessed",
+        "episode_ended"
+      ]
+    },
+    "tacticalReplayEventType": {
+      "type": "string",
+      "enum": [
+        "tactical_activation_created",
+        "tactical_scenario_bundle_loaded",
+        "tactical_episode_started",
+        "tactical_candidate_set_materialized",
+        "tactical_action_selected",
+        "dispatch_unit_assigned",
+        "route_plan_committed",
+        "unit_position_updated",
+        "facility_status_updated",
+        "incident_state_updated",
+        "tactical_metrics_assessed",
+        "tactical_episode_ended"
+      ]
+    },
+    "tacticalActorType": {
+      "type": "string",
+      "enum": [
+        "system",
+        "planner",
+        "dispatch_unit",
+        "facility",
+        "metric_engine",
+        "bridge"
+      ]
+    },
+    "wgs84Point": {
+      "type": "object",
+      "required": [
+        "lat",
+        "lon"
+      ],
+      "properties": {
+        "lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "lon": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      },
+      "additionalProperties": false
+    },
+    "wgs84GroundPoint": {
+      "type": "object",
+      "required": [
+        "lat",
+        "lon",
+        "alt_m"
+      ],
+      "properties": {
+        "lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "lon": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "alt_m": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wgs84BoundingBox": {
+      "type": "object",
+      "required": [
+        "min_lat",
+        "min_lon",
+        "max_lat",
+        "max_lon"
+      ],
+      "properties": {
+        "min_lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "min_lon": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "max_lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "max_lon": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      },
+      "additionalProperties": false
+    },
+    "spatialLayerType": {
+      "type": "string",
+      "enum": [
+        "roads",
+        "facilities",
+        "hazard_perimeter",
+        "terrain",
+        "weather"
+      ]
+    },
+    "dispatchUnitType": {
+      "type": "string",
+      "enum": [
+        "engine",
+        "crew",
+        "dozer",
+        "air_tanker",
+        "helicopter",
+        "command"
+      ]
+    },
+    "dispatchUnitStatus": {
+      "type": "string",
+      "enum": [
+        "available",
+        "assigned",
+        "enroute",
+        "on_scene",
+        "restaging",
+        "out_of_service"
+      ]
+    },
+    "facilityType": {
+      "type": "string",
+      "enum": [
+        "station",
+        "helibase",
+        "drop_point",
+        "hospital",
+        "staging_area",
+        "command_post"
+      ]
+    },
+    "travelMode": {
+      "type": "string",
+      "enum": [
+        "road",
+        "air"
+      ]
+    },
+    "routePlanStatus": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "active",
+        "completed",
+        "aborted"
+      ]
+    },
+    "tacticalIncidentState": {
+      "type": "string",
+      "enum": [
+        "reported",
+        "mobilizing",
+        "engaged",
+        "contained",
+        "demobilized"
+      ]
+    },
+    "timeWindow": {
+      "type": "object",
+      "required": [
+        "start_time_utc",
+        "end_time_utc"
+      ],
+      "properties": {
+        "start_time_utc": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+        },
+        "end_time_utc": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+        }
+      },
+      "additionalProperties": false
+    },
+    "opportunityGenerationConfig": {
+      "type": "object",
+      "required": [
+        "quality_threshold",
+        "cloud_block_threshold"
+      ],
+      "properties": {
+        "quality_threshold": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+        },
+        "cloud_block_threshold": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenarioConfig": {
+      "type": "object",
+      "required": [
+        "horizon_hours",
+        "notes",
+        "weather_model",
+        "opportunity_generation"
+      ],
+      "properties": {
+        "horizon_hours": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "weather_model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "opportunity_generation": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/opportunityGenerationConfig"
+        }
+      },
+      "additionalProperties": true
+    },
+    "tacticalScenarioConfig": {
+      "type": "object",
+      "required": [
+        "planning_horizon_minutes",
+        "max_active_routes",
+        "reroute_on_blockage",
+        "notes"
+      ],
+      "properties": {
+        "planning_horizon_minutes": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+        },
+        "max_active_routes": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+        },
+        "reroute_on_blockage": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

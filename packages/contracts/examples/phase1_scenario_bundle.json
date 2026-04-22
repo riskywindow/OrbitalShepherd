@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "bundle_id": "sb:osbench-v01:cloud-trap:seed-42",
+  "manifest_id": "sm:osbench-v01:cloud-trap:seed-42",
+  "benchmark_id": "osbench-v0.1",
+  "scenario_family": "cloud_trap",
+  "simulation_seed": 42,
+  "decision_interval_seconds": 60,
+  "time_window": {
+    "start_time_utc": "2026-08-14T00:00:00Z",
+    "end_time_utc": "2026-08-15T00:00:00Z"
+  },
+  "satellites": [
+    {
+      "schema_version": "1.0.0",
+      "satellite_id": "sat:ember-01",
+      "name": "Ember-01",
+      "norad_catalog_id": 620001,
+      "sensor": {
+        "sensor_id": "sensor:ember-optical-01",
+        "swath_km": 48.0,
+        "quality_nominal": 0.91,
+        "max_off_nadir_deg": 35,
+        "estimated_data_volume_mb": 850
+      },
+      "downlink": {
+        "buffer_capacity_mb": 64000,
+        "nominal_downlink_rate_mbps": 420
+      },
+      "constraints": {
+        "max_retargets_per_orbit": 3,
+        "availability": "nominal"
+      }
+    }
+  ],
+  "ground_stations": [
+    {
+      "schema_version": "1.0.0",
+      "station_id": "gs:alaska-fairbanks",
+      "name": "Fairbanks Alaska",
+      "location": {
+        "lat": 64.8378,
+        "lon": -147.7164,
+        "alt_m": 136
+      },
+      "capabilities": {
+        "max_concurrent_contacts": 2,
+        "downlink_rate_mbps": 700,
+        "availability": "nominal"
+      }
+    }
+  ],
+  "target_cells": [
+    {
+      "schema_version": "1.0.0",
+      "target_cell_id": "tc:8928308280fffff",
+      "h3_cell": "8928308280fffff",
+      "centroid": {
+        "lat": 34.2523,
+        "lon": -118.5134
+      },
+      "region_name": "Southern California",
+      "static_value": 0.82,
+      "priority_class": "critical"
+    }
+  ],
+  "incidents": [
+    {
+      "schema_version": "1.0.0",
+      "incident_id": "inc:2026-08-14-ca-001",
+      "incident_type": "wildfire",
+      "target_cell_id": "tc:8928308280fffff",
+      "ignition_time_utc": "2026-08-14T03:22:00Z",
+      "urgency_score": 0.94,
+      "confidence": 0.88,
+      "state": "active",
+      "estimated_area_ha": 210.5
+    }
+  ],
+  "config": {
+    "horizon_hours": 24,
+    "notes": "Early pass has high cloud obstruction; later pass is cleaner but delayed.",
+    "weather_model": "open-meteo-cloud-cover-v1",
+    "opportunity_generation": {
+      "quality_threshold": 0.65,
+      "cloud_block_threshold": 0.6
+    }
+  },
+  "compilation": {
+    "source_manifest_id": "sm:osbench-v01:cloud-trap:seed-42",
+    "source_manifest_schema_version": "1.0.0",
+    "source_manifest_sha256": "cfece8424698021d0bc87c9f6493111d4a8890c0ec115d75d5736b77b82b9819",
+    "compiled_at_utc": "2026-04-09T12:00:00Z",
+    "compiler_version": "orbital-shepherd-contracts/1.0.0"
+  },
+  "observation_opportunities": [
+    {
+      "schema_version": "1.0.0",
+      "opportunity_id": "opp:sat-ember-01:tc-8928308280fffff:000124",
+      "satellite_id": "sat:ember-01",
+      "target_cell_id": "tc:8928308280fffff",
+      "start_time_utc": "2026-08-14T03:30:00Z",
+      "end_time_utc": "2026-08-14T03:34:00Z",
+      "predicted_quality_mean": 0.71,
+      "predicted_cloud_obstruction_prob": 0.77,
+      "estimated_data_volume_mb": 850,
+      "slew_cost": 0.14,
+      "incident_ids": [
+        "inc:2026-08-14-ca-001"
+      ]
+    }
+  ],
+  "downlink_windows": [
+    {
+      "schema_version": "1.0.0",
+      "window_id": "dw:sat-ember-01:gs-alaska-fairbanks:000201",
+      "satellite_id": "sat:ember-01",
+      "station_id": "gs:alaska-fairbanks",
+      "start_time_utc": "2026-08-14T04:20:00Z",
+      "end_time_utc": "2026-08-14T04:27:00Z",
+      "max_volume_mb": 1200,
+      "expected_rate_mbps": 700,
+      "outage_risk": 0.05
+    }
+  ],
+  "bundle_fingerprint": "e94208e49e5e42d4ff09629e170ab6e2cccd7ceb1c24629c61a0972b140f802d"
+}

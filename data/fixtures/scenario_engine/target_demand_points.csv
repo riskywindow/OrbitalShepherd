@@ -1,0 +1,13 @@
+point_id,h3_cell,lat,lon,region_name,base_demand,priority_class
+dp:socal-core,8928308280fffff,34.2523,-118.5134,Southern California,0.62,critical
+dp:socal-valley,8928308280fffff,34.3172,-118.4021,Southern California,0.27,critical
+dp:norcal-foothills,8928341aec3ffff,39.5361,-121.7125,Northern California,0.58,high
+dp:norcal-ridge,8928341aec3ffff,39.6114,-121.8032,Northern California,0.19,high
+dp:oregon-bend,8928d54250bffff,44.0582,-121.3153,Central Oregon,0.51,high
+dp:colorado-front,88268cda81fffff,39.1178,-105.3589,Colorado Front Range,0.41,medium
+dp:alberta-fortmac,892f054b6d7ffff,56.7269,-111.38,Alberta Boreal,0.64,high
+dp:bc-interior,892f5ab6e13ffff,52.0614,-122.2297,British Columbia Interior,0.55,high
+dp:arizona-rim,8929a1d7573ffff,34.435,-111.26,Arizona Rim,0.47,high
+dp:idaho-salmon,8928860e4cbffff,44.2405,-114.4788,Idaho Salmon-Challis,0.44,medium
+dp:queensland-rangeland,89be0e35a13ffff,-23.512,147.095,Central Queensland,0.52,medium
+dp:nsw-ranges,89be6d34a4fffff,-32.163,149.122,NSW Central Ranges,0.46,medium

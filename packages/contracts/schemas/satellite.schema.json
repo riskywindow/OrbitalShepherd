@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/satellite.schema.json",
+  "title": "Satellite",
+  "description": "Satellite platform and sensor contract used by both manifests and bundles.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "satellite_id",
+    "name",
+    "norad_catalog_id",
+    "sensor",
+    "downlink",
+    "constraints"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "satellite_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "norad_catalog_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+    },
+    "sensor": {
+      "type": "object",
+      "required": [
+        "sensor_id",
+        "swath_km",
+        "quality_nominal"
+      ],
+      "properties": {
+        "sensor_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "swath_km": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveNumber"
+        },
+        "quality_nominal": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+        },
+        "max_off_nadir_deg": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 90
+        },
+        "estimated_data_volume_mb": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "downlink": {
+      "type": "object",
+      "required": [
+        "buffer_capacity_mb",
+        "nominal_downlink_rate_mbps"
+      ],
+      "properties": {
+        "buffer_capacity_mb": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveNumber"
+        },
+        "nominal_downlink_rate_mbps": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "constraints": {
+      "type": "object",
+      "required": [
+        "max_retargets_per_orbit"
+      ],
+      "properties": {
+        "max_retargets_per_orbit": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+        },
+        "availability": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/availability"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

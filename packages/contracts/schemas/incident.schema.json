@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/incident.schema.json",
+  "title": "Incident",
+  "description": "Time-sensitive event that creates mission value.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "incident_id",
+    "incident_type",
+    "target_cell_id",
+    "ignition_time_utc",
+    "urgency_score",
+    "confidence",
+    "state"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "incident_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "incident_type": {
+      "type": "string",
+      "enum": [
+        "wildfire"
+      ]
+    },
+    "target_cell_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "ignition_time_utc": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+    },
+    "urgency_score": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    },
+    "confidence": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "active",
+        "contained",
+        "archived"
+      ]
+    },
+    "estimated_area_ha": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+    }
+  },
+  "additionalProperties": false
+}

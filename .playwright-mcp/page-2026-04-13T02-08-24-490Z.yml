@@ -1,0 +1,171 @@
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - paragraph [ref=e6]: Orbital Shepherd
+      - heading "Phase 1 Globe UI" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Mission-control replay for scenario selection, baseline execution, orbital context, and post-run evaluation.
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Scenario
+        - strong [ref=e12]: cloud_trap
+      - generic [ref=e13]:
+        - generic [ref=e14]: Mission Utility
+        - strong [ref=e15]: "-3.200"
+      - generic [ref=e16]:
+        - generic [ref=e17]: Replay Tick
+        - strong [ref=e18]: "1"
+  - generic [ref=e20]:
+    - complementary [ref=e21]:
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - heading "Scenario Control" [level=2] [ref=e24]
+          - paragraph [ref=e25]: Load a deterministic scenario pack and choose a planner baseline.
+        - generic [ref=e26]:
+          - generic [ref=e27]: Scenario
+          - combobox "Scenario" [ref=e28]:
+            - option "sb:osbench-phase1-pack-v1:burst_outbreak:seed-201"
+            - option "sb:osbench-phase1-pack-v1:burst_outbreak:seed-202"
+            - option "sb:osbench-phase1-pack-v1:burst_outbreak:seed-203"
+            - option "sb:osbench-phase1-pack-v1:cloud_trap:seed-301" [selected]
+            - option "sb:osbench-phase1-pack-v1:cloud_trap:seed-302"
+            - option "sb:osbench-phase1-pack-v1:cloud_trap:seed-303"
+            - option "sb:osbench-phase1-pack-v1:sparse_frontier:seed-101"
+            - option "sb:osbench-phase1-pack-v1:sparse_frontier:seed-102"
+            - option "sb:osbench-phase1-pack-v1:sparse_frontier:seed-103"
+            - option "sb:osbench-phase1-pack-v1:sparse_frontier:seed-104"
+        - generic [ref=e29]:
+          - generic [ref=e30]: Planner Baseline
+          - combobox "Planner Baseline" [ref=e31]:
+            - option "random_valid_action"
+            - option "urgency_greedy" [selected]
+        - button "Start baseline run" [ref=e32] [cursor=pointer]
+        - generic [ref=e33]:
+          - generic [ref=e34]: Replay Episode
+          - combobox "Replay Episode" [ref=e35]:
+            - option "Select episode"
+            - option "urgency_greedy · Apr 12, 09:07 PM" [selected]
+            - option "urgency_greedy · Apr 12, 08:53 PM"
+            - option "urgency_greedy · Apr 12, 08:52 PM"
+        - paragraph [ref=e125]: "Demo default: sb:osbench-phase1-pack-v1:cloud_trap:seed-301 · urgency_greedy"
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - heading "Scenario Brief" [level=2] [ref=e38]
+          - paragraph [ref=e39]: Cloud Trap
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - term [ref=e42]: Window
+            - definition [ref=e43]: 2026-04-17T00:00Z -> 00:00Z
+          - generic [ref=e44]:
+            - term [ref=e45]: Targets
+            - definition [ref=e46]: "3"
+          - generic [ref=e47]:
+            - term [ref=e48]: Incidents
+            - definition [ref=e49]: "2"
+          - generic [ref=e50]:
+            - term [ref=e51]: Opportunities
+            - definition [ref=e52]: "10"
+          - generic [ref=e53]:
+            - term [ref=e54]: Downlinks
+            - definition [ref=e55]: "69"
+          - generic [ref=e56]:
+            - term [ref=e57]: Orbit Assets
+            - definition [ref=e58]: "3"
+        - paragraph [ref=e59]: Fixture-backed cloud trap over high-value California cells with early obstructed passes and later relief.
+    - generic [ref=e60]:
+      - generic [ref=e61]:
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - heading "Orbital Replay Surface" [level=2] [ref=e64]
+            - paragraph [ref=e65]: Available targets, committed observations, downlinks, and degraded outcomes are projected onto the current replay tick.
+          - generic [ref=e66]:
+            - generic [ref=e67]:
+              - generic [ref=e68]: Available
+              - strong [ref=e69]: "0"
+            - generic [ref=e70]:
+              - generic [ref=e71]: Selected
+              - strong [ref=e72]: "0"
+            - generic [ref=e73]:
+              - generic [ref=e74]: Downlinked
+              - strong [ref=e75]: "0"
+            - generic [ref=e76]:
+              - generic [ref=e77]: Degraded
+              - strong [ref=e78]: "0"
+        - generic [ref=e79]:
+          - link "Cesium ion" [ref=e89] [cursor=pointer]:
+            - /url: https://cesium.com/
+            - img "Cesium ion" [ref=e90]
+          - generic [ref=e91]:
+            - generic [ref=e94]: Available targets
+            - generic [ref=e97]: Selected opportunity
+            - generic [ref=e100]: Downlink delivered
+            - generic [ref=e103]: Missed / degraded
+      - generic [ref=e104]:
+        - generic [ref=e105]:
+          - heading "Timeline" [level=2] [ref=e106]
+          - paragraph [ref=e107]: Scrub replay time or step through the event stream without leaving the operational surface.
+        - generic [ref=e126]:
+          - button "Play" [ref=e127] [cursor=pointer]
+          - button "Step back" [ref=e128] [cursor=pointer]
+          - button "Step forward" [active] [ref=e129] [cursor=pointer]
+          - generic [ref=e130]: Apr 17, 12:01 AM
+        - slider [ref=e131]: "1"
+        - generic [ref=e132]:
+          - generic [ref=e133]: Apr 17, 12:00 AM
+          - generic [ref=e134]: Apr 18, 12:00 AM
+    - complementary [ref=e109]:
+      - generic [ref=e110]:
+        - generic [ref=e111]:
+          - heading "Replay Event Panel" [level=2] [ref=e112]
+          - paragraph [ref=e113]: Operational events are trimmed to the decisions and outcomes that matter.
+        - article [ref=e136]:
+          - generic [ref=e137]:
+            - generic [ref=e138]: episode started
+            - generic [ref=e139]: Apr 17, 12:00 AM
+          - paragraph [ref=e140]: planner planner:urgency_greedy seed 301
+      - generic [ref=e115]:
+        - generic [ref=e116]:
+          - heading "Metrics Summary" [level=2] [ref=e117]
+          - paragraph [ref=e118]: Replay metrics mirror the benchmark view without sending you to notebooks.
+        - generic [ref=e141]:
+          - article [ref=e142]:
+            - generic [ref=e143]: Useful Packets
+            - strong [ref=e144]: "2"
+          - article [ref=e145]:
+            - generic [ref=e146]: Observation Commits
+            - strong [ref=e147]: "5"
+          - article [ref=e148]:
+            - generic [ref=e149]: Cloud Waste
+            - strong [ref=e150]: 60.0%
+          - article [ref=e151]:
+            - generic [ref=e152]: Missed Urgent
+            - strong [ref=e153]: 50.0%
+          - article [ref=e154]:
+            - generic [ref=e155]: Utilization
+            - strong [ref=e156]: 3.2%
+          - article [ref=e157]:
+            - generic [ref=e158]: First Useful Obs
+            - strong [ref=e159]: 838.0m
+          - article [ref=e160]:
+            - generic [ref=e161]: Downlink p90
+            - strong [ref=e162]: 84.0m
+          - article [ref=e163]:
+            - generic [ref=e164]: Mission Utility
+            - strong [ref=e165]: "-3.200"
+      - generic [ref=e120]:
+        - generic [ref=e121]:
+          - heading "Episode State" [level=2] [ref=e122]
+          - paragraph [ref=e123]: Latest observation and incident resolution state for the loaded episode.
+        - generic [ref=e166]:
+          - generic [ref=e167]:
+            - term [ref=e168]: Planner
+            - definition [ref=e169]: urgency_greedy
+          - generic [ref=e170]:
+            - term [ref=e171]: Status
+            - definition [ref=e172]: terminated
+          - generic [ref=e173]:
+            - term [ref=e174]: Replay Events
+            - definition [ref=e175]: "5773"
+          - generic [ref=e176]:
+            - term [ref=e177]: Incidents Downlinked
+            - definition [ref=e178]: "0"
+        - paragraph [ref=e179]: Current tick 1 at Apr 17, 12:01 AM.

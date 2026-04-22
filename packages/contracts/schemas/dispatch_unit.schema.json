@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/dispatch_unit.schema.json",
+  "title": "DispatchUnit",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "unit_id",
+    "callsign",
+    "unit_type",
+    "status",
+    "home_facility_id",
+    "travel_mode",
+    "personnel_count",
+    "equipment_capacity",
+    "location"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "unit_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "callsign": {
+      "type": "string",
+      "minLength": 1
+    },
+    "unit_type": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/dispatchUnitType"
+    },
+    "status": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/dispatchUnitStatus"
+    },
+    "home_facility_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "current_facility_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "travel_mode": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/travelMode"
+    },
+    "personnel_count": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+    },
+    "equipment_capacity": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+    },
+    "location": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84GroundPoint"
+    }
+  },
+  "additionalProperties": false
+}

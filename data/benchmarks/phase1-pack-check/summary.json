@@ -1,0 +1,970 @@
+{
+  "bundle_ids": [
+    "sb:osbench-phase1-pack-v1:burst_outbreak:seed-201",
+    "sb:osbench-phase1-pack-v1:burst_outbreak:seed-202",
+    "sb:osbench-phase1-pack-v1:burst_outbreak:seed-203",
+    "sb:osbench-phase1-pack-v1:cloud_trap:seed-301",
+    "sb:osbench-phase1-pack-v1:cloud_trap:seed-302",
+    "sb:osbench-phase1-pack-v1:cloud_trap:seed-303",
+    "sb:osbench-phase1-pack-v1:sparse_frontier:seed-101",
+    "sb:osbench-phase1-pack-v1:sparse_frontier:seed-102",
+    "sb:osbench-phase1-pack-v1:sparse_frontier:seed-103",
+    "sb:osbench-phase1-pack-v1:sparse_frontier:seed-104"
+  ],
+  "episodes": [
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:burst_outbreak:seed-201",
+      "episode_fingerprint": "sha256:2cc9d6b7c6751a3db5b42c622284b76c75e66ee7557ec4d989d4101588c1f07a",
+      "episode_id": "ep:osbench-phase1-pack-v1:burst_outbreak:seed-201",
+      "episode_seed": 201,
+      "metrics": {
+        "cloud_waste_rate": 1.0,
+        "downlink_latency_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "missed_urgent_incident_count": 5,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -14.754401,
+        "observation_commit_count": 14,
+        "opportunity_utilization_efficiency": 0.0,
+        "time_to_first_useful_observation_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "urgent_incident_count": 5,
+        "useful_observation_value_captured": 0.0,
+        "useful_packet_count": 0
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:00eab52a214df354cc735dc47714eb386b3ca50d099ed3746c4a49eb5aa1463e",
+      "replay_path": "data/replays/phase1-pack-check/random_valid_action/sb--osbench-phase1-pack-v1--burst_outbreak--seed-201.ndjson",
+      "scenario_family": "burst_outbreak",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/random_valid_action/sb--osbench-phase1-pack-v1--burst_outbreak--seed-201.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:burst_outbreak:seed-202",
+      "episode_fingerprint": "sha256:b7e35f45c3e8c456192507734778ea2a7f692a87f513ac71014ad468a795b1a8",
+      "episode_id": "ep:osbench-phase1-pack-v1:burst_outbreak:seed-202",
+      "episode_seed": 202,
+      "metrics": {
+        "cloud_waste_rate": 0.636364,
+        "downlink_latency_seconds": {
+          "count": 5,
+          "mean": 1356.0,
+          "median": 480.0,
+          "p90": 4980.0,
+          "values": [
+            420.0,
+            420.0,
+            480.0,
+            480.0,
+            4980.0
+          ]
+        },
+        "missed_urgent_incident_count": 0,
+        "missed_urgent_incident_rate": 0.0,
+        "mission_utility": -0.406913,
+        "observation_commit_count": 11,
+        "opportunity_utilization_efficiency": 0.100661,
+        "time_to_first_useful_observation_seconds": {
+          "count": 5,
+          "mean": 13920.0,
+          "median": 4740.0,
+          "p90": 51840.0,
+          "values": [
+            2040.0,
+            4140.0,
+            4740.0,
+            6840.0,
+            51840.0
+          ]
+        },
+        "urgent_incident_count": 5,
+        "useful_observation_value_captured": 1.107272,
+        "useful_packet_count": 5
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:95d5f53a96874c1c641a9fe1f1730c2ba5d72f6ec0ca762789975df5e0bb6953",
+      "replay_path": "data/replays/phase1-pack-check/random_valid_action/sb--osbench-phase1-pack-v1--burst_outbreak--seed-202.ndjson",
+      "scenario_family": "burst_outbreak",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/random_valid_action/sb--osbench-phase1-pack-v1--burst_outbreak--seed-202.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:burst_outbreak:seed-203",
+      "episode_fingerprint": "sha256:26209abb30872a7aeaf150d5b65684faad4dcbb5e7fb30aed1e9876cbc031fd4",
+      "episode_id": "ep:osbench-phase1-pack-v1:burst_outbreak:seed-203",
+      "episode_seed": 203,
+      "metrics": {
+        "cloud_waste_rate": 1.0,
+        "downlink_latency_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "missed_urgent_incident_count": 5,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -10.99243,
+        "observation_commit_count": 6,
+        "opportunity_utilization_efficiency": 0.0,
+        "time_to_first_useful_observation_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "urgent_incident_count": 5,
+        "useful_observation_value_captured": 0.0,
+        "useful_packet_count": 0
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:30414ba3dd876a8d6b3f01c6a3388604b7541e156ca75ef629e1b8895804f3b5",
+      "replay_path": "data/replays/phase1-pack-check/random_valid_action/sb--osbench-phase1-pack-v1--burst_outbreak--seed-203.ndjson",
+      "scenario_family": "burst_outbreak",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/random_valid_action/sb--osbench-phase1-pack-v1--burst_outbreak--seed-203.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_fingerprint": "sha256:cbeeebd2c9471d82efd3c2b6b3c4efc3a4dbe904dd884d47fffa9fa29e6cdb35",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_seed": 301,
+      "metrics": {
+        "cloud_waste_rate": 0.4,
+        "downlink_latency_seconds": {
+          "count": 2,
+          "mean": 5340.0,
+          "median": 5340.0,
+          "p90": 5640.0,
+          "values": [
+            5040.0,
+            5640.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -3.896845,
+        "observation_commit_count": 10,
+        "opportunity_utilization_efficiency": 0.016129,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 50280.0,
+          "median": 50280.0,
+          "p90": 50280.0,
+          "values": [
+            50280.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.161291,
+        "useful_packet_count": 2
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:7111bd93113d6eecd249760df442c0b049705f73cb64a9e8ff69dffd6584050a",
+      "replay_path": "data/replays/phase1-pack-check/random_valid_action/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/random_valid_action/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_fingerprint": "sha256:e1cd3074ef0e3a2d9de4c2a2f73218daf8a6e9e780dbbd6e125574acb00fa076",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_seed": 302,
+      "metrics": {
+        "cloud_waste_rate": 1.0,
+        "downlink_latency_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -10.698818,
+        "observation_commit_count": 9,
+        "opportunity_utilization_efficiency": 0.0,
+        "time_to_first_useful_observation_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "urgent_incident_count": 1,
+        "useful_observation_value_captured": 0.0,
+        "useful_packet_count": 0
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:5d78c468af570cae7dd481b2c863c1037df1463f08bf3893ff0de7507009d640",
+      "replay_path": "data/replays/phase1-pack-check/random_valid_action/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/random_valid_action/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-303",
+      "episode_fingerprint": "sha256:f35a1cc9e27a918ca3581cf3660a1c1112f9ca6c178819a7e701b1c3998e3948",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-303",
+      "episode_seed": 303,
+      "metrics": {
+        "cloud_waste_rate": 0.857143,
+        "downlink_latency_seconds": {
+          "count": 1,
+          "mean": 4980.0,
+          "median": 4980.0,
+          "p90": 4980.0,
+          "values": [
+            4980.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -5.416394,
+        "observation_commit_count": 7,
+        "opportunity_utilization_efficiency": 0.009761,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 51240.0,
+          "median": 51240.0,
+          "p90": 51240.0,
+          "values": [
+            51240.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.068327,
+        "useful_packet_count": 1
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:f7438b7bc957f1bad41c391b5ec2480cf36f7fa33c70f7a5b7322a9c094beea4",
+      "replay_path": "data/replays/phase1-pack-check/random_valid_action/sb--osbench-phase1-pack-v1--cloud_trap--seed-303.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/random_valid_action/sb--osbench-phase1-pack-v1--cloud_trap--seed-303.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:sparse_frontier:seed-101",
+      "episode_fingerprint": "sha256:05e3fcfb7067218887aa39b155fa58358728e5c11ad41e1acb3ebf084d41c47d",
+      "episode_id": "ep:osbench-phase1-pack-v1:sparse_frontier:seed-101",
+      "episode_seed": 101,
+      "metrics": {
+        "cloud_waste_rate": 0.7,
+        "downlink_latency_seconds": {
+          "count": 1,
+          "mean": 4920.0,
+          "median": 4920.0,
+          "p90": 4920.0,
+          "values": [
+            4920.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -3.412533,
+        "observation_commit_count": 10,
+        "opportunity_utilization_efficiency": 0.011774,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 60360.0,
+          "median": 60360.0,
+          "p90": 60360.0,
+          "values": [
+            60360.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.117736,
+        "useful_packet_count": 1
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:816ca63b22d68e0aa279f5f6bc30d67897f7f708c2e4091faebaef52407ca1c5",
+      "replay_path": "data/replays/phase1-pack-check/random_valid_action/sb--osbench-phase1-pack-v1--sparse_frontier--seed-101.ndjson",
+      "scenario_family": "sparse_frontier",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/random_valid_action/sb--osbench-phase1-pack-v1--sparse_frontier--seed-101.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:sparse_frontier:seed-102",
+      "episode_fingerprint": "sha256:9c52d5d28099609d1082390c3e97cc002f8f6d7e022b599480d7437b386145b9",
+      "episode_id": "ep:osbench-phase1-pack-v1:sparse_frontier:seed-102",
+      "episode_seed": 102,
+      "metrics": {
+        "cloud_waste_rate": 0.625,
+        "downlink_latency_seconds": {
+          "count": 1,
+          "mean": 5040.0,
+          "median": 5040.0,
+          "p90": 5040.0,
+          "values": [
+            5040.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -3.142492,
+        "observation_commit_count": 8,
+        "opportunity_utilization_efficiency": 0.018241,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 14340.0,
+          "median": 14340.0,
+          "p90": 14340.0,
+          "values": [
+            14340.0
+          ]
+        },
+        "urgent_incident_count": 1,
+        "useful_observation_value_captured": 0.145929,
+        "useful_packet_count": 1
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:b626b0d950667eeec3336605bc3cc67891903886c00131cb6a22a6501b8efafb",
+      "replay_path": "data/replays/phase1-pack-check/random_valid_action/sb--osbench-phase1-pack-v1--sparse_frontier--seed-102.ndjson",
+      "scenario_family": "sparse_frontier",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/random_valid_action/sb--osbench-phase1-pack-v1--sparse_frontier--seed-102.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:sparse_frontier:seed-103",
+      "episode_fingerprint": "sha256:f28b9c085f0ff1015935789a33a03cb007f5b3a47976f5838ced12d19899f1f9",
+      "episode_id": "ep:osbench-phase1-pack-v1:sparse_frontier:seed-103",
+      "episode_seed": 103,
+      "metrics": {
+        "cloud_waste_rate": 0.625,
+        "downlink_latency_seconds": {
+          "count": 2,
+          "mean": 14280.0,
+          "median": 14280.0,
+          "p90": 23280.0,
+          "values": [
+            5280.0,
+            23280.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -6.836617,
+        "observation_commit_count": 8,
+        "opportunity_utilization_efficiency": 0.020443,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 45000.0,
+          "median": 45000.0,
+          "p90": 45000.0,
+          "values": [
+            45000.0
+          ]
+        },
+        "urgent_incident_count": 1,
+        "useful_observation_value_captured": 0.163546,
+        "useful_packet_count": 2
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:7621ab689414823a416c0fc60dfdb1390f80aae6ae640a1a90944edd3c86468d",
+      "replay_path": "data/replays/phase1-pack-check/random_valid_action/sb--osbench-phase1-pack-v1--sparse_frontier--seed-103.ndjson",
+      "scenario_family": "sparse_frontier",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/random_valid_action/sb--osbench-phase1-pack-v1--sparse_frontier--seed-103.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:sparse_frontier:seed-104",
+      "episode_fingerprint": "sha256:f91849543d791aa87834ef8698bfecc682f6b4b432490129f62a87ac74db8a2d",
+      "episode_id": "ep:osbench-phase1-pack-v1:sparse_frontier:seed-104",
+      "episode_seed": 104,
+      "metrics": {
+        "cloud_waste_rate": 0.75,
+        "downlink_latency_seconds": {
+          "count": 1,
+          "mean": 5220.0,
+          "median": 5220.0,
+          "p90": 5220.0,
+          "values": [
+            5220.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -5.389383,
+        "observation_commit_count": 12,
+        "opportunity_utilization_efficiency": 0.014868,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 37500.0,
+          "median": 37500.0,
+          "p90": 37500.0,
+          "values": [
+            37500.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.178418,
+        "useful_packet_count": 1
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:c362ca3ff40bd9d79ead5b29c19939bc501f41c954fadb619a9d440252a01d1c",
+      "replay_path": "data/replays/phase1-pack-check/random_valid_action/sb--osbench-phase1-pack-v1--sparse_frontier--seed-104.ndjson",
+      "scenario_family": "sparse_frontier",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/random_valid_action/sb--osbench-phase1-pack-v1--sparse_frontier--seed-104.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:burst_outbreak:seed-201",
+      "episode_fingerprint": "sha256:a8d8ef34c38bf924579cdf98b6cf097b962095675782200012137fdffae1c621",
+      "episode_id": "ep:osbench-phase1-pack-v1:burst_outbreak:seed-201",
+      "episode_seed": 201,
+      "metrics": {
+        "cloud_waste_rate": 1.0,
+        "downlink_latency_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "missed_urgent_incident_count": 5,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -13.136059,
+        "observation_commit_count": 11,
+        "opportunity_utilization_efficiency": 0.0,
+        "time_to_first_useful_observation_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "urgent_incident_count": 5,
+        "useful_observation_value_captured": 0.0,
+        "useful_packet_count": 0
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:e6d8baab28cf5c848a98fadc5e312ef103ec5d7759f171ab5a8a5344ea422a26",
+      "replay_path": "data/replays/phase1-pack-check/urgency_greedy/sb--osbench-phase1-pack-v1--burst_outbreak--seed-201.ndjson",
+      "scenario_family": "burst_outbreak",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--burst_outbreak--seed-201.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:burst_outbreak:seed-202",
+      "episode_fingerprint": "sha256:2884322e98e159818e11ce867a6f896f955e20dab1a997e7832949627cf125c2",
+      "episode_id": "ep:osbench-phase1-pack-v1:burst_outbreak:seed-202",
+      "episode_seed": 202,
+      "metrics": {
+        "cloud_waste_rate": 0.7,
+        "downlink_latency_seconds": {
+          "count": 5,
+          "mean": 1356.0,
+          "median": 480.0,
+          "p90": 4980.0,
+          "values": [
+            420.0,
+            420.0,
+            480.0,
+            480.0,
+            4980.0
+          ]
+        },
+        "missed_urgent_incident_count": 0,
+        "missed_urgent_incident_rate": 0.0,
+        "mission_utility": -0.40202,
+        "observation_commit_count": 10,
+        "opportunity_utilization_efficiency": 0.110727,
+        "time_to_first_useful_observation_seconds": {
+          "count": 5,
+          "mean": 13920.0,
+          "median": 4740.0,
+          "p90": 51840.0,
+          "values": [
+            2040.0,
+            4140.0,
+            4740.0,
+            6840.0,
+            51840.0
+          ]
+        },
+        "urgent_incident_count": 5,
+        "useful_observation_value_captured": 1.107272,
+        "useful_packet_count": 5
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:bfef67e523ff31f29dd566bcb3d72ad18d21a31bb40c78ec02a5bfb2891b9e05",
+      "replay_path": "data/replays/phase1-pack-check/urgency_greedy/sb--osbench-phase1-pack-v1--burst_outbreak--seed-202.ndjson",
+      "scenario_family": "burst_outbreak",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--burst_outbreak--seed-202.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:burst_outbreak:seed-203",
+      "episode_fingerprint": "sha256:6fb362265ffde9d61c166d8d043b74eec487b27ca84c155a18e81ddc5c0e9f22",
+      "episode_id": "ep:osbench-phase1-pack-v1:burst_outbreak:seed-203",
+      "episode_seed": 203,
+      "metrics": {
+        "cloud_waste_rate": 1.0,
+        "downlink_latency_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "missed_urgent_incident_count": 5,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -10.344223,
+        "observation_commit_count": 5,
+        "opportunity_utilization_efficiency": 0.0,
+        "time_to_first_useful_observation_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "urgent_incident_count": 5,
+        "useful_observation_value_captured": 0.0,
+        "useful_packet_count": 0
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:dceca6bef8ce15969125b58a42f33e187a1067b4ea35049d7fbb119dcd447a82",
+      "replay_path": "data/replays/phase1-pack-check/urgency_greedy/sb--osbench-phase1-pack-v1--burst_outbreak--seed-203.ndjson",
+      "scenario_family": "burst_outbreak",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--burst_outbreak--seed-203.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_fingerprint": "sha256:dbec7fd1a2d5e3c5b34480682a95781dc67ad10f020422f46ace974271a624e7",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_seed": 301,
+      "metrics": {
+        "cloud_waste_rate": 0.6,
+        "downlink_latency_seconds": {
+          "count": 2,
+          "mean": 5040.0,
+          "median": 5040.0,
+          "p90": 5040.0,
+          "values": [
+            5040.0,
+            5040.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -3.200166,
+        "observation_commit_count": 5,
+        "opportunity_utilization_efficiency": 0.032258,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 50280.0,
+          "median": 50280.0,
+          "p90": 50280.0,
+          "values": [
+            50280.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.161291,
+        "useful_packet_count": 2
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:9835fd7ac2694ebf77a63243de5ea200ae97ea3386bba0acdd7ef7fa771c7ccc",
+      "replay_path": "data/replays/phase1-pack-check/urgency_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_fingerprint": "sha256:63e528d20639b51ec9d1be5856b69afa1b52b533a39f8eb678e3f5d6fe8847f8",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_seed": 302,
+      "metrics": {
+        "cloud_waste_rate": 1.0,
+        "downlink_latency_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -5.05805,
+        "observation_commit_count": 3,
+        "opportunity_utilization_efficiency": 0.0,
+        "time_to_first_useful_observation_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "urgent_incident_count": 1,
+        "useful_observation_value_captured": 0.0,
+        "useful_packet_count": 0
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:09e409fa31c444a290e8bb796209a8a53f467d839a0a425cc3c0fa8fb2722813",
+      "replay_path": "data/replays/phase1-pack-check/urgency_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-303",
+      "episode_fingerprint": "sha256:d5f6c09b5a3e4a09857ed084dea1ffdfd913fcc9cd11599a0f38c232be179b42",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-303",
+      "episode_seed": 303,
+      "metrics": {
+        "cloud_waste_rate": 0.75,
+        "downlink_latency_seconds": {
+          "count": 1,
+          "mean": 4980.0,
+          "median": 4980.0,
+          "p90": 4980.0,
+          "values": [
+            4980.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -3.189307,
+        "observation_commit_count": 4,
+        "opportunity_utilization_efficiency": 0.017082,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 51240.0,
+          "median": 51240.0,
+          "p90": 51240.0,
+          "values": [
+            51240.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.068327,
+        "useful_packet_count": 1
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:29b9b93535dfc58bd6612244c3861db99e101869b43f09912aab0e010084b094",
+      "replay_path": "data/replays/phase1-pack-check/urgency_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-303.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-303.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:sparse_frontier:seed-101",
+      "episode_fingerprint": "sha256:4c2dad6b5675ee22754f8f03e576a419a01683cd13168fdca60ae3f0efde8894",
+      "episode_id": "ep:osbench-phase1-pack-v1:sparse_frontier:seed-101",
+      "episode_seed": 101,
+      "metrics": {
+        "cloud_waste_rate": 0.833333,
+        "downlink_latency_seconds": {
+          "count": 1,
+          "mean": 4920.0,
+          "median": 4920.0,
+          "p90": 4920.0,
+          "values": [
+            4920.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -2.524525,
+        "observation_commit_count": 6,
+        "opportunity_utilization_efficiency": 0.019623,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 60360.0,
+          "median": 60360.0,
+          "p90": 60360.0,
+          "values": [
+            60360.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.117736,
+        "useful_packet_count": 1
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:609dd98ef1d6bad8b965b7ead0fee0804eeffde628f91737bbe3a111c75e99a2",
+      "replay_path": "data/replays/phase1-pack-check/urgency_greedy/sb--osbench-phase1-pack-v1--sparse_frontier--seed-101.ndjson",
+      "scenario_family": "sparse_frontier",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--sparse_frontier--seed-101.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:sparse_frontier:seed-102",
+      "episode_fingerprint": "sha256:a64e1765b8bdb64eb729ad16161ad763d51f0c2772ff41b9d16e926099d776cd",
+      "episode_id": "ep:osbench-phase1-pack-v1:sparse_frontier:seed-102",
+      "episode_seed": 102,
+      "metrics": {
+        "cloud_waste_rate": 0.75,
+        "downlink_latency_seconds": {
+          "count": 1,
+          "mean": 5040.0,
+          "median": 5040.0,
+          "p90": 5040.0,
+          "values": [
+            5040.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -2.72354,
+        "observation_commit_count": 4,
+        "opportunity_utilization_efficiency": 0.036482,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 14340.0,
+          "median": 14340.0,
+          "p90": 14340.0,
+          "values": [
+            14340.0
+          ]
+        },
+        "urgent_incident_count": 1,
+        "useful_observation_value_captured": 0.145929,
+        "useful_packet_count": 1
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:6e6f3dffa00ccee9d6e1e345f64e3e613706d84472a619b9653ad3e76cb19dd7",
+      "replay_path": "data/replays/phase1-pack-check/urgency_greedy/sb--osbench-phase1-pack-v1--sparse_frontier--seed-102.ndjson",
+      "scenario_family": "sparse_frontier",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--sparse_frontier--seed-102.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:sparse_frontier:seed-103",
+      "episode_fingerprint": "sha256:1b0583ccf00add2fcce73d07eff83f9953f5500ecb35d26b52e4f6b0e9e79c52",
+      "episode_id": "ep:osbench-phase1-pack-v1:sparse_frontier:seed-103",
+      "episode_seed": 103,
+      "metrics": {
+        "cloud_waste_rate": 0.6,
+        "downlink_latency_seconds": {
+          "count": 2,
+          "mean": 14280.0,
+          "median": 14280.0,
+          "p90": 23280.0,
+          "values": [
+            5280.0,
+            23280.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -6.463976,
+        "observation_commit_count": 5,
+        "opportunity_utilization_efficiency": 0.032709,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 45000.0,
+          "median": 45000.0,
+          "p90": 45000.0,
+          "values": [
+            45000.0
+          ]
+        },
+        "urgent_incident_count": 1,
+        "useful_observation_value_captured": 0.163546,
+        "useful_packet_count": 2
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:2585198c8a7d74eab17fa078652eadfca0d8ef11ec0db572540f370300bdf37c",
+      "replay_path": "data/replays/phase1-pack-check/urgency_greedy/sb--osbench-phase1-pack-v1--sparse_frontier--seed-103.ndjson",
+      "scenario_family": "sparse_frontier",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--sparse_frontier--seed-103.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:sparse_frontier:seed-104",
+      "episode_fingerprint": "sha256:22beb50906478404c373aa356ce16b53dbe5580d4f27d0d313340b93467c52e7",
+      "episode_id": "ep:osbench-phase1-pack-v1:sparse_frontier:seed-104",
+      "episode_seed": 104,
+      "metrics": {
+        "cloud_waste_rate": 0.875,
+        "downlink_latency_seconds": {
+          "count": 1,
+          "mean": 5220.0,
+          "median": 5220.0,
+          "p90": 5220.0,
+          "values": [
+            5220.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -4.821591,
+        "observation_commit_count": 8,
+        "opportunity_utilization_efficiency": 0.022302,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 37500.0,
+          "median": 37500.0,
+          "p90": 37500.0,
+          "values": [
+            37500.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.178418,
+        "useful_packet_count": 1
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:903f527a9225b9d8a66dccbf7a4db162f36f4d81a53e219a7c44bea16a225a66",
+      "replay_path": "data/replays/phase1-pack-check/urgency_greedy/sb--osbench-phase1-pack-v1--sparse_frontier--seed-104.ndjson",
+      "scenario_family": "sparse_frontier",
+      "summary_path": "data/benchmarks/phase1-pack-check/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--sparse_frontier--seed-104.json"
+    }
+  ],
+  "planner_summaries": {
+    "random_valid_action": {
+      "cloud_waste_rate_mean": 0.759351,
+      "description": "Uniformly sample one legal action from the emitted action mask.",
+      "downlink_latency_seconds": {
+        "count": 13,
+        "mean": 5090.769231,
+        "median": 4980.0,
+        "p90": 5640.0,
+        "values": [
+          420.0,
+          420.0,
+          480.0,
+          480.0,
+          4920.0,
+          4980.0,
+          4980.0,
+          5040.0,
+          5040.0,
+          5220.0,
+          5280.0,
+          5640.0,
+          23280.0
+        ]
+      },
+      "episode_count": 10,
+      "missed_urgent_incident_rate_mean": 0.7,
+      "mission_utility_mean": -6.494683,
+      "opportunity_utilization_efficiency_mean": 0.019188,
+      "scenario_families": [
+        "burst_outbreak",
+        "cloud_trap",
+        "sparse_frontier"
+      ],
+      "time_to_first_useful_observation_seconds": {
+        "count": 11,
+        "mean": 29847.272727,
+        "median": 37500.0,
+        "p90": 51840.0,
+        "values": [
+          2040.0,
+          4140.0,
+          4740.0,
+          6840.0,
+          14340.0,
+          37500.0,
+          45000.0,
+          50280.0,
+          51240.0,
+          51840.0,
+          60360.0
+        ]
+      },
+      "useful_observation_value_captured_mean": 0.194252
+    },
+    "urgency_greedy": {
+      "cloud_waste_rate_mean": 0.810833,
+      "description": "Rank legal actions by urgent incident value, predicted observation usefulness, cloud risk, and current downlink pressure.",
+      "downlink_latency_seconds": {
+        "count": 13,
+        "mean": 5044.615385,
+        "median": 4980.0,
+        "p90": 5280.0,
+        "values": [
+          420.0,
+          420.0,
+          480.0,
+          480.0,
+          4920.0,
+          4980.0,
+          4980.0,
+          5040.0,
+          5040.0,
+          5040.0,
+          5220.0,
+          5280.0,
+          23280.0
+        ]
+      },
+      "episode_count": 10,
+      "missed_urgent_incident_rate_mean": 0.7,
+      "mission_utility_mean": -5.186346,
+      "opportunity_utilization_efficiency_mean": 0.027118,
+      "scenario_families": [
+        "burst_outbreak",
+        "cloud_trap",
+        "sparse_frontier"
+      ],
+      "time_to_first_useful_observation_seconds": {
+        "count": 11,
+        "mean": 29847.272727,
+        "median": 37500.0,
+        "p90": 51840.0,
+        "values": [
+          2040.0,
+          4140.0,
+          4740.0,
+          6840.0,
+          14340.0,
+          37500.0,
+          45000.0,
+          50280.0,
+          51240.0,
+          51840.0,
+          60360.0
+        ]
+      },
+      "useful_observation_value_captured_mean": 0.194252
+    }
+  },
+  "planners": [
+    "random_valid_action",
+    "urgency_greedy"
+  ],
+  "replay_dir": "data/replays/phase1-pack-check",
+  "report_dir": "data/benchmarks/phase1-pack-check",
+  "run_fingerprint": "sha256:58f1b96ec5e8c94a86a3cdb0c7009e9326ca6c79826720b7bfb4222df84f7297",
+  "run_id": "phase1-pack-check"
+}

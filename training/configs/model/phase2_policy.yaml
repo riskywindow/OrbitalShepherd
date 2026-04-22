@@ -1,0 +1,12 @@
+{
+  "config_type": "model_architecture",
+  "model_id": "model:phase2-policy-transformer-v1",
+  "observation_encoder_type": "tabular_transformer",
+  "action_encoder_type": "masked_action_mlp",
+  "hidden_dim": 256,
+  "encoder_layers": 4,
+  "attention_heads": 4,
+  "dropout": 0.1,
+  "recurrent_memory_steps": 16,
+  "shared_policy_value_backbone": true
+}

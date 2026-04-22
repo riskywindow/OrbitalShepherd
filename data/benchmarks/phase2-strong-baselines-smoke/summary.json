@@ -1,0 +1,468 @@
+{
+  "bundle_ids": [
+    "sb:osbench-phase1-pack-v1:cloud_trap:seed-301",
+    "sb:osbench-phase1-pack-v1:cloud_trap:seed-302"
+  ],
+  "episodes": [
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_fingerprint": "sha256:cbeeebd2c9471d82efd3c2b6b3c4efc3a4dbe904dd884d47fffa9fa29e6cdb35",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_seed": 301,
+      "metrics": {
+        "cloud_waste_rate": 0.4,
+        "downlink_latency_seconds": {
+          "count": 2,
+          "mean": 5340.0,
+          "median": 5340.0,
+          "p90": 5640.0,
+          "values": [
+            5040.0,
+            5640.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -3.896845,
+        "observation_commit_count": 10,
+        "opportunity_utilization_efficiency": 0.016129,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 50280.0,
+          "median": 50280.0,
+          "p90": 50280.0,
+          "values": [
+            50280.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.161291,
+        "useful_packet_count": 2
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:275a1a231a573ac42eaa65d4e3adbdb4ba17461baa70103dd060f79ed635fd66",
+      "replay_path": "data/replays/phase2-strong-baselines-smoke/random_valid_action/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase2-strong-baselines-smoke/episodes/random_valid_action/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_fingerprint": "sha256:e1cd3074ef0e3a2d9de4c2a2f73218daf8a6e9e780dbbd6e125574acb00fa076",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_seed": 302,
+      "metrics": {
+        "cloud_waste_rate": 1.0,
+        "downlink_latency_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -10.698818,
+        "observation_commit_count": 9,
+        "opportunity_utilization_efficiency": 0.0,
+        "time_to_first_useful_observation_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "urgent_incident_count": 1,
+        "useful_observation_value_captured": 0.0,
+        "useful_packet_count": 0
+      },
+      "planner_id": "random_valid_action",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:4ffbd2b0a5e1a43e67cc5abe6e54418bebfd4df1c36aa70163ee64b76f4e4357",
+      "replay_path": "data/replays/phase2-strong-baselines-smoke/random_valid_action/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase2-strong-baselines-smoke/episodes/random_valid_action/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_fingerprint": "sha256:dbec7fd1a2d5e3c5b34480682a95781dc67ad10f020422f46ace974271a624e7",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_seed": 301,
+      "metrics": {
+        "cloud_waste_rate": 0.6,
+        "downlink_latency_seconds": {
+          "count": 2,
+          "mean": 5040.0,
+          "median": 5040.0,
+          "p90": 5040.0,
+          "values": [
+            5040.0,
+            5040.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -3.200166,
+        "observation_commit_count": 5,
+        "opportunity_utilization_efficiency": 0.032258,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 50280.0,
+          "median": 50280.0,
+          "p90": 50280.0,
+          "values": [
+            50280.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.161291,
+        "useful_packet_count": 2
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:062b94f294eb524b38c3f078a3aba6736766e2f6e9b14444d84de22b4f4ebed5",
+      "replay_path": "data/replays/phase2-strong-baselines-smoke/urgency_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase2-strong-baselines-smoke/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_fingerprint": "sha256:63e528d20639b51ec9d1be5856b69afa1b52b533a39f8eb678e3f5d6fe8847f8",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_seed": 302,
+      "metrics": {
+        "cloud_waste_rate": 1.0,
+        "downlink_latency_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -5.05805,
+        "observation_commit_count": 3,
+        "opportunity_utilization_efficiency": 0.0,
+        "time_to_first_useful_observation_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "urgent_incident_count": 1,
+        "useful_observation_value_captured": 0.0,
+        "useful_packet_count": 0
+      },
+      "planner_id": "urgency_greedy",
+      "planner_version": "phase1-v1",
+      "replay_fingerprint": "sha256:5e99bda6b762ae2c9c6fc7cbffe2161c0a235cb1433b2fd2034557737360b3a4",
+      "replay_path": "data/replays/phase2-strong-baselines-smoke/urgency_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase2-strong-baselines-smoke/episodes/urgency_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_fingerprint": "sha256:9f34bca530cd33d067cce18033e3828ff7d6c2a2ff9f0d669333eaab8d7d5eb2",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_seed": 301,
+      "metrics": {
+        "cloud_waste_rate": 0.6,
+        "downlink_latency_seconds": {
+          "count": 2,
+          "mean": 5040.0,
+          "median": 5040.0,
+          "p90": 5040.0,
+          "values": [
+            5040.0,
+            5040.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -3.200166,
+        "observation_commit_count": 5,
+        "opportunity_utilization_efficiency": 0.032258,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 50280.0,
+          "median": 50280.0,
+          "p90": 50280.0,
+          "values": [
+            50280.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.161291,
+        "useful_packet_count": 2
+      },
+      "planner_id": "value_density_greedy",
+      "planner_version": "phase2-v1",
+      "replay_fingerprint": "sha256:18e22e11904a064eed726eb632a0832d4a40ae94d53aafd8a951fe69767370c5",
+      "replay_path": "data/replays/phase2-strong-baselines-smoke/value_density_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase2-strong-baselines-smoke/episodes/value_density_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_fingerprint": "sha256:7ff77f3e69bab587ed3e22a9574741e36b3a5cec3bb5733c8e7411259e4b1158",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_seed": 302,
+      "metrics": {
+        "cloud_waste_rate": 1.0,
+        "downlink_latency_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -4.448332,
+        "observation_commit_count": 2,
+        "opportunity_utilization_efficiency": 0.0,
+        "time_to_first_useful_observation_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "urgent_incident_count": 1,
+        "useful_observation_value_captured": 0.0,
+        "useful_packet_count": 0
+      },
+      "planner_id": "value_density_greedy",
+      "planner_version": "phase2-v1",
+      "replay_fingerprint": "sha256:678e4fc7fb8675f60efbe84a778bbfb321d78bebdec4fce72023d32607ba3559",
+      "replay_path": "data/replays/phase2-strong-baselines-smoke/value_density_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase2-strong-baselines-smoke/episodes/value_density_greedy/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_fingerprint": "sha256:d586262875782045455b536e37c9e8de73eb81cdb89ce6bee9783b9ec2c981ca",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-301",
+      "episode_seed": 301,
+      "metrics": {
+        "cloud_waste_rate": 0.6,
+        "downlink_latency_seconds": {
+          "count": 2,
+          "mean": 5040.0,
+          "median": 5040.0,
+          "p90": 5040.0,
+          "values": [
+            5040.0,
+            5040.0
+          ]
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 0.5,
+        "mission_utility": -3.200166,
+        "observation_commit_count": 5,
+        "opportunity_utilization_efficiency": 0.032258,
+        "time_to_first_useful_observation_seconds": {
+          "count": 1,
+          "mean": 50280.0,
+          "median": 50280.0,
+          "p90": 50280.0,
+          "values": [
+            50280.0
+          ]
+        },
+        "urgent_incident_count": 2,
+        "useful_observation_value_captured": 0.161291,
+        "useful_packet_count": 2
+      },
+      "planner_id": "ortools_receding_horizon",
+      "planner_version": "phase2-v1",
+      "replay_fingerprint": "sha256:93f174a16dd96e8e4ebf8ca49e0b932cdb87a138ac1c39cdc14ad488378d380e",
+      "replay_path": "data/replays/phase2-strong-baselines-smoke/ortools_receding_horizon/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase2-strong-baselines-smoke/episodes/ortools_receding_horizon/sb--osbench-phase1-pack-v1--cloud_trap--seed-301.json"
+    },
+    {
+      "action_count": 1440,
+      "bundle_id": "sb:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_fingerprint": "sha256:17d58f3ea434da084d28d5d6502e22d54e31a482656aef1b1ec624037fde41af",
+      "episode_id": "ep:osbench-phase1-pack-v1:cloud_trap:seed-302",
+      "episode_seed": 302,
+      "metrics": {
+        "cloud_waste_rate": 1.0,
+        "downlink_latency_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "missed_urgent_incident_count": 1,
+        "missed_urgent_incident_rate": 1.0,
+        "mission_utility": -5.072222,
+        "observation_commit_count": 3,
+        "opportunity_utilization_efficiency": 0.0,
+        "time_to_first_useful_observation_seconds": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p90": null,
+          "values": []
+        },
+        "urgent_incident_count": 1,
+        "useful_observation_value_captured": 0.0,
+        "useful_packet_count": 0
+      },
+      "planner_id": "ortools_receding_horizon",
+      "planner_version": "phase2-v1",
+      "replay_fingerprint": "sha256:85c004654b2920c6888da0bc272ef854e314874836e26cfd4ed81902feda4962",
+      "replay_path": "data/replays/phase2-strong-baselines-smoke/ortools_receding_horizon/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.ndjson",
+      "scenario_family": "cloud_trap",
+      "summary_path": "data/benchmarks/phase2-strong-baselines-smoke/episodes/ortools_receding_horizon/sb--osbench-phase1-pack-v1--cloud_trap--seed-302.json"
+    }
+  ],
+  "planner_summaries": {
+    "ortools_receding_horizon": {
+      "cloud_waste_rate_mean": 0.8,
+      "description": "Deterministic OR-Tools receding-horizon planner that scores each current legal action using the same visible heuristic terms plus a small finite lookahead optimization.",
+      "downlink_latency_seconds": {
+        "count": 2,
+        "mean": 5040.0,
+        "median": 5040.0,
+        "p90": 5040.0,
+        "values": [
+          5040.0,
+          5040.0
+        ]
+      },
+      "episode_count": 2,
+      "missed_urgent_incident_rate_mean": 0.75,
+      "mission_utility_mean": -4.136194,
+      "opportunity_utilization_efficiency_mean": 0.016129,
+      "scenario_families": [
+        "cloud_trap"
+      ],
+      "time_to_first_useful_observation_seconds": {
+        "count": 1,
+        "mean": 50280.0,
+        "median": 50280.0,
+        "p90": 50280.0,
+        "values": [
+          50280.0
+        ]
+      },
+      "useful_observation_value_captured_mean": 0.080645
+    },
+    "random_valid_action": {
+      "cloud_waste_rate_mean": 0.7,
+      "description": "Uniformly sample one legal action from the emitted action mask.",
+      "downlink_latency_seconds": {
+        "count": 2,
+        "mean": 5340.0,
+        "median": 5340.0,
+        "p90": 5640.0,
+        "values": [
+          5040.0,
+          5640.0
+        ]
+      },
+      "episode_count": 2,
+      "missed_urgent_incident_rate_mean": 0.75,
+      "mission_utility_mean": -7.297831,
+      "opportunity_utilization_efficiency_mean": 0.008065,
+      "scenario_families": [
+        "cloud_trap"
+      ],
+      "time_to_first_useful_observation_seconds": {
+        "count": 1,
+        "mean": 50280.0,
+        "median": 50280.0,
+        "p90": 50280.0,
+        "values": [
+          50280.0
+        ]
+      },
+      "useful_observation_value_captured_mean": 0.080645
+    },
+    "urgency_greedy": {
+      "cloud_waste_rate_mean": 0.8,
+      "description": "Rank legal actions by urgent incident value, predicted observation usefulness, cloud risk, and current downlink pressure.",
+      "downlink_latency_seconds": {
+        "count": 2,
+        "mean": 5040.0,
+        "median": 5040.0,
+        "p90": 5040.0,
+        "values": [
+          5040.0,
+          5040.0
+        ]
+      },
+      "episode_count": 2,
+      "missed_urgent_incident_rate_mean": 0.75,
+      "mission_utility_mean": -4.129108,
+      "opportunity_utilization_efficiency_mean": 0.016129,
+      "scenario_families": [
+        "cloud_trap"
+      ],
+      "time_to_first_useful_observation_seconds": {
+        "count": 1,
+        "mean": 50280.0,
+        "median": 50280.0,
+        "p90": 50280.0,
+        "values": [
+          50280.0
+        ]
+      },
+      "useful_observation_value_captured_mean": 0.080645
+    },
+    "value_density_greedy": {
+      "cloud_waste_rate_mean": 0.8,
+      "description": "Deterministic Phase 2 heuristic that ranks legal actions with a configurable value-density score over expected value, freshness, quality, risk, retarget cost, and downlink consequences.",
+      "downlink_latency_seconds": {
+        "count": 2,
+        "mean": 5040.0,
+        "median": 5040.0,
+        "p90": 5040.0,
+        "values": [
+          5040.0,
+          5040.0
+        ]
+      },
+      "episode_count": 2,
+      "missed_urgent_incident_rate_mean": 0.75,
+      "mission_utility_mean": -3.824249,
+      "opportunity_utilization_efficiency_mean": 0.016129,
+      "scenario_families": [
+        "cloud_trap"
+      ],
+      "time_to_first_useful_observation_seconds": {
+        "count": 1,
+        "mean": 50280.0,
+        "median": 50280.0,
+        "p90": 50280.0,
+        "values": [
+          50280.0
+        ]
+      },
+      "useful_observation_value_captured_mean": 0.080645
+    }
+  },
+  "planners": [
+    "random_valid_action",
+    "urgency_greedy",
+    "value_density_greedy",
+    "ortools_receding_horizon"
+  ],
+  "replay_dir": "data/replays/phase2-strong-baselines-smoke",
+  "report_dir": "data/benchmarks/phase2-strong-baselines-smoke",
+  "run_fingerprint": "sha256:98b98d7057504a71db55255a0ae98bd7057554646e2081afa60e05ac9ce8ca99",
+  "run_id": "phase2-strong-baselines-smoke"
+}

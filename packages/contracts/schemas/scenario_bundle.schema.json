@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/scenario_bundle.schema.json",
+  "title": "ScenarioBundle",
+  "description": "Compiled immutable simulator artifact derived from a ScenarioManifest.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "bundle_fingerprint",
+    "manifest_id",
+    "benchmark_id",
+    "scenario_family",
+    "simulation_seed",
+    "decision_interval_seconds",
+    "time_window",
+    "satellites",
+    "ground_stations",
+    "target_cells",
+    "incidents",
+    "config",
+    "compilation",
+    "observation_opportunities",
+    "downlink_windows"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "bundle_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "bundle_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "manifest_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "benchmark_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scenario_family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "simulation_seed": {
+      "type": "integer"
+    },
+    "decision_interval_seconds": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+    },
+    "time_window": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/timeWindow"
+    },
+    "satellites": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/satellite.schema.json"
+      }
+    },
+    "ground_stations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/ground_station.schema.json"
+      }
+    },
+    "target_cells": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/target_cell.schema.json"
+      }
+    },
+    "incidents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/incident.schema.json"
+      }
+    },
+    "config": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/scenarioConfig"
+    },
+    "compilation": {
+      "type": "object",
+      "required": [
+        "source_manifest_id",
+        "source_manifest_schema_version",
+        "source_manifest_sha256",
+        "compiled_at_utc",
+        "compiler_version"
+      ],
+      "properties": {
+        "source_manifest_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "source_manifest_schema_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_manifest_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "compiled_at_utc": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+        },
+        "compiler_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "observation_opportunities": {
+      "type": "array",
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/observation_opportunity.schema.json"
+      }
+    },
+    "downlink_windows": {
+      "type": "array",
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/downlink_window.schema.json"
+      }
+    }
+  },
+  "additionalProperties": false
+}

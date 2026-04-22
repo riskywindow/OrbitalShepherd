@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "activation_id": "act:inc-2026-08-14-ca-001:tactical-0001",
+  "incident_packet_id": "pkt:inc-2026-08-14-ca-001:0001",
+  "region_bundle_id": "rb:norcal-sierra-foothills:v1",
+  "activation_time_utc": "2026-08-14T04:29:00Z",
+  "activation_reason": "High-confidence wildfire packet requires regional dispatch synthesis.",
+  "requested_capabilities": [
+    "initial_attack",
+    "road_dispatch",
+    "air_support"
+  ],
+  "activation_fingerprint": "5555555555555555555555555555555555555555555555555555555555555555",
+  "incident_packet": {
+    "schema_version": "1.0.0",
+    "packet_id": "pkt:inc-2026-08-14-ca-001:0001",
+    "incident_id": "inc:2026-08-14-ca-001",
+    "target_cell_id": "tc:8928308280fffff",
+    "observation_time_utc": "2026-08-14T03:34:00Z",
+    "downlink_time_utc": "2026-08-14T04:27:00Z",
+    "confidence": 0.88,
+    "urgency_score": 0.94,
+    "recommended_action": "dispatch_ground",
+    "observation_opportunity_id": "opp:sat-ember-01:tc-8928308280fffff:000124",
+    "downstream_value_estimate": 0.91,
+    "summary": "Thermal hotspot and smoke signature warrant immediate initial-attack planning."
+  }
+}
