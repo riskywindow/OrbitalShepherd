@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/tactical_metrics_summary.schema.json",
+  "title": "TacticalMetricsSummary",
+  "description": "Replay-derived tactical benchmark summary for a tactical episode.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "summary_id",
+    "tactical_bundle_id",
+    "episode_id",
+    "incident_packet_id",
+    "summary_fingerprint",
+    "dispatched_unit_count",
+    "arrived_unit_count",
+    "route_completion_ratio",
+    "containment_progress",
+    "mean_dispatch_latency_seconds",
+    "facility_utilization_peak",
+    "operational_score"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "summary_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "tactical_bundle_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "episode_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "incident_packet_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "summary_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "dispatched_unit_count": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+    },
+    "arrived_unit_count": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+    },
+    "route_completion_ratio": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    },
+    "containment_progress": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    },
+    "mean_dispatch_latency_seconds": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+    },
+    "facility_utilization_peak": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    },
+    "operational_score": {
+      "type": "number"
+    },
+    "metric_components": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    }
+  },
+  "additionalProperties": false
+}

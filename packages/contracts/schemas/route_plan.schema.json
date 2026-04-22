@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/route_plan.schema.json",
+  "title": "RoutePlan",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "route_plan_id",
+    "unit_id",
+    "origin_facility_id",
+    "destination_facility_id",
+    "travel_mode",
+    "status",
+    "distance_km",
+    "estimated_duration_seconds",
+    "risk_score",
+    "waypoints"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "route_plan_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "unit_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "origin_facility_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "destination_facility_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "travel_mode": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/travelMode"
+    },
+    "status": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/routePlanStatus"
+    },
+    "distance_km": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveNumber"
+    },
+    "estimated_duration_seconds": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+    },
+    "risk_score": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+    },
+    "waypoints": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84GroundPoint"
+      }
+    },
+    "road_segment_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "additionalProperties": false
+}

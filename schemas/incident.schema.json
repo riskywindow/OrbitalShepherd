@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://schemas/v0.1/incident.schema.json",
+  "title": "Incident",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "incident_id",
+    "incident_type",
+    "target_cell_id",
+    "ignition_time_utc",
+    "urgency_score",
+    "confidence",
+    "state"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "incident_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "incident_type": {
+      "type": "string",
+      "enum": [
+        "wildfire"
+      ]
+    },
+    "target_cell_id": {
+      "type": "string"
+    },
+    "ignition_time_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "urgency_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "active",
+        "contained",
+        "archived"
+      ]
+    },
+    "estimated_area_ha": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Orbital Shepherd Phase 0 Architecture</title>
+  <desc id="desc">Event-sourced architecture showing data ingestion, scenario compilation, opportunity generation, environment runtime, planner adapters, replay storage, metrics, and globe UI.</desc>
+  <defs>
+    <style>
+      .bg { fill: #0b1020; }
+      .lane { fill: #101935; stroke: #2a3a6f; stroke-width: 2; rx: 18; }
+      .box { fill: #142246; stroke: #78a6ff; stroke-width: 2; rx: 14; }
+      .box2 { fill: #1a2b54; stroke: #7de2d1; stroke-width: 2; rx: 14; }
+      .box3 { fill: #2a214f; stroke: #d6a3ff; stroke-width: 2; rx: 14; }
+      .title { fill: #f6f8ff; font: 700 30px Inter, Arial, sans-serif; }
+      .subtitle { fill: #c7d2fe; font: 500 16px Inter, Arial, sans-serif; }
+      .label { fill: #f6f8ff; font: 700 18px Inter, Arial, sans-serif; }
+      .text { fill: #dbe4ff; font: 500 14px Inter, Arial, sans-serif; }
+      .small { fill: #b9c7ef; font: 500 12px Inter, Arial, sans-serif; }
+      .arrow { stroke: #9fb8ff; stroke-width: 3; fill: none; marker-end: url(#m); }
+      .arrow2 { stroke: #89f0dc; stroke-width: 3; fill: none; marker-end: url(#m2); }
+      .arrow3 { stroke: #ddb6ff; stroke-width: 3; fill: none; marker-end: url(#m3); }
+      .pill { fill: #22305f; stroke: #425ca7; stroke-width: 1.5; rx: 12; }
+    </style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9fb8ff" />
+    </marker>
+    <marker id="m2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#89f0dc" />
+    </marker>
+    <marker id="m3" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#ddb6ff" />
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1600" height="980" />
+  <text class="title" x="48" y="56">Orbital Shepherd - Phase 0 Event-Sourced Architecture</text>
+  <text class="subtitle" x="48" y="86">Deterministic scenario bundles | planner-interchangeable control loop | immutable replay for audit and benchmarking</text>
+
+  <rect class="lane" x="40" y="120" width="420" height="760" />
+  <text class="label" x="64" y="154">Upstream data and canonicalization</text>
+
+  <rect class="box" x="64" y="190" width="170" height="100" />
+  <text class="label" x="82" y="225">Ephemeris Service</text>
+  <text class="text" x="82" y="252">OMM / GP snapshots</text>
+  <text class="text" x="82" y="274">NORAD identity map</text>
+
+  <rect class="box" x="256" y="190" width="170" height="100" />
+  <text class="label" x="274" y="225">Incident Service</text>
+  <text class="text" x="274" y="252">FIRMS ingest</text>
+  <text class="text" x="274" y="274">H3 demand signals</text>
+
+  <rect class="box" x="64" y="322" width="170" height="100" />
+  <text class="label" x="82" y="357">Weather Service</text>
+  <text class="text" x="82" y="384">Cloud forecasts</text>
+  <text class="text" x="82" y="406">Usability priors</text>
+
+  <rect class="box" x="256" y="322" width="170" height="100" />
+  <text class="label" x="274" y="357">Scenario Engine</text>
+  <text class="text" x="274" y="384">Deterministic bundle</text>
+  <text class="text" x="274" y="406">Seeded family config</text>
+
+  <rect class="pill" x="86" y="470" width="320" height="34" />
+  <text class="small" x="104" y="492">Canonical world model: UTC | WGS84 / ECEF | H3 cells | schema-versioned artifacts</text>
+
+  <rect class="box2" x="96" y="550" width="300" height="120" />
+  <text class="label" x="120" y="588">ScenarioBundle (immutable)</text>
+  <text class="text" x="120" y="618">satellites + ground stations + target cells</text>
+  <text class="text" x="120" y="642">incidents + horizon + config + seed</text>
+
+  <rect class="box2" x="96" y="708" width="300" height="120" />
+  <text class="label" x="120" y="746">Opportunity Builder</text>
+  <text class="text" x="120" y="776">observation windows</text>
+  <text class="text" x="120" y="800">downlink windows</text>
+
+  <rect class="lane" x="500" y="120" width="540" height="760" />
+  <text class="label" x="524" y="154">Deterministic control plane</text>
+
+  <rect class="box2" x="528" y="220" width="250" height="150" />
+  <text class="label" x="552" y="258">Environment Runtime</text>
+  <text class="text" x="552" y="288">fixed 60-second control ticks</text>
+  <text class="text" x="552" y="312">legal action masks</text>
+  <text class="text" x="552" y="336">reward decomposition</text>
+
+  <rect class="box3" x="808" y="200" width="200" height="90" />
+  <text class="label" x="832" y="236">Baseline Adapter</text>
+  <text class="text" x="832" y="262">random / greedy</text>
+
+  <rect class="box3" x="808" y="310" width="200" height="90" />
+  <text class="label" x="832" y="346">OR Adapter</text>
+  <text class="text" x="832" y="372">receding horizon</text>
+
+  <rect class="box3" x="808" y="420" width="200" height="90" />
+  <text class="label" x="832" y="456">Future RL Adapter</text>
+  <text class="text" x="832" y="482">policy inference</text>
+
+  <rect class="box2" x="588" y="470" width="350" height="140" />
+  <text class="label" x="612" y="508">Replay Store (append-only)</text>
+  <text class="text" x="612" y="538">scenario_loaded | action_selected</text>
+  <text class="text" x="612" y="562">observation_committed | reward_assessed</text>
+  <text class="text" x="612" y="586">episode_ended</text>
+
+  <rect class="box2" x="588" y="660" width="350" height="120" />
+  <text class="label" x="612" y="698">Metrics Engine</text>
+  <text class="text" x="612" y="728">mission utility</text>
+  <text class="text" x="612" y="752">TTFUO / latency / missed incidents</text>
+
+  <rect class="lane" x="1080" y="120" width="480" height="760" />
+  <text class="label" x="1104" y="154">Interfaces and product surface</text>
+
+  <rect class="box" x="1112" y="230" width="200" height="110" />
+  <text class="label" x="1136" y="268">Planner API</text>
+  <text class="text" x="1136" y="296">scenarios / episodes</text>
+  <text class="text" x="1136" y="320">events / metrics</text>
+
+  <rect class="box" x="1340" y="230" width="180" height="110" />
+  <text class="label" x="1364" y="268">Globe UI</text>
+  <text class="text" x="1364" y="296">Cesium timeline</text>
+  <text class="text" x="1364" y="320">decision inspector</text>
+
+  <rect class="box" x="1112" y="410" width="408" height="130" />
+  <text class="label" x="1136" y="448">Counterfactual replay and benchmark reporting</text>
+  <text class="text" x="1136" y="478">compare RL vs greedy vs OR on the same immutable event contract</text>
+  <text class="text" x="1136" y="502">export episode fingerprints, scenario IDs, and metric summaries</text>
+
+  <rect class="pill" x="1136" y="620" width="360" height="36" />
+  <text class="small" x="1156" y="644">Future hook: incident_packet_emitted -> tactical street-level response planner</text>
+
+  <path class="arrow" d="M426 240 C 470 240, 470 360, 528 360" />
+  <path class="arrow" d="M234 372 C 280 372, 280 372, 256 372" opacity="0" />
+  <path class="arrow" d="M426 372 C 486 372, 486 360, 528 360" />
+  <path class="arrow2" d="M396 610 C 470 610, 470 610, 588 610" />
+  <path class="arrow2" d="M396 768 C 480 768, 480 300, 528 300" />
+  <path class="arrow3" d="M778 295 C 792 295, 792 245, 808 245" />
+  <path class="arrow3" d="M778 295 C 792 295, 792 355, 808 355" />
+  <path class="arrow3" d="M778 295 C 792 295, 792 465, 808 465" />
+  <path class="arrow2" d="M908 540 C 980 540, 980 285, 1112 285" />
+  <path class="arrow" d="M1312 285 C 1326 285, 1326 285, 1340 285" />
+  <path class="arrow2" d="M938 720 C 1028 720, 1028 475, 1112 475" />
+
+  <text class="small" x="528" y="840">Core prestige move: every planner acts through the same environment and replay contract.</text>
+  <text class="small" x="528" y="862">That makes later RL claims auditable, comparable, and far harder to dismiss.</text>
+</svg>

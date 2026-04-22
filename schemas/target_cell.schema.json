@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://schemas/v0.1/target_cell.schema.json",
+  "title": "TargetCell",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "target_cell_id",
+    "h3_cell",
+    "centroid",
+    "static_value"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "target_cell_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "h3_cell": {
+      "type": "string",
+      "minLength": 1
+    },
+    "centroid": {
+      "type": "object",
+      "required": [
+        "lat",
+        "lon"
+      ],
+      "properties": {
+        "lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "lon": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      },
+      "additionalProperties": false
+    },
+    "region_name": {
+      "type": "string"
+    },
+    "static_value": {
+      "type": "number",
+      "minimum": 0
+    },
+    "priority_class": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://schemas/v0.1/downlink_window.schema.json",
+  "title": "DownlinkWindow",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "window_id",
+    "satellite_id",
+    "station_id",
+    "start_time_utc",
+    "end_time_utc",
+    "max_volume_mb",
+    "expected_rate_mbps",
+    "outage_risk"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "window_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "satellite_id": {
+      "type": "string"
+    },
+    "station_id": {
+      "type": "string"
+    },
+    "start_time_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_time_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "max_volume_mb": {
+      "type": "number",
+      "minimum": 0
+    },
+    "expected_rate_mbps": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "outage_risk": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "additionalProperties": false
+}

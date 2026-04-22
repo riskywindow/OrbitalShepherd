@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://schemas/v0.1/replay_event.schema.json",
+  "title": "ReplayEvent",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "event_id",
+    "episode_id",
+    "event_index",
+    "sim_tick",
+    "sim_time_utc",
+    "event_type",
+    "actor_type",
+    "actor_id",
+    "payload"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "episode_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "event_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sim_tick": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sim_time_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "scenario_loaded",
+        "episode_started",
+        "opportunities_materialized",
+        "action_mask_emitted",
+        "action_selected",
+        "observation_committed",
+        "downlink_committed",
+        "incident_packet_emitted",
+        "reward_assessed",
+        "episode_ended"
+      ]
+    },
+    "actor_type": {
+      "type": "string",
+      "enum": [
+        "system",
+        "planner",
+        "satellite",
+        "ground_station",
+        "metric_engine"
+      ]
+    },
+    "actor_id": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "scenario_loaded"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "bundle_id",
+              "scenario_family"
+            ],
+            "properties": {
+              "bundle_id": {
+                "type": "string"
+              },
+              "scenario_family": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "episode_started"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "planner_id",
+              "episode_fingerprint"
+            ],
+            "properties": {
+              "planner_id": {
+                "type": "string"
+              },
+              "episode_fingerprint": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "opportunities_materialized"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "observation_count",
+              "downlink_count"
+            ],
+            "properties": {
+              "observation_count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "downlink_count": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "action_selected"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "action_type",
+              "action_ref"
+            ],
+            "properties": {
+              "action_type": {
+                "type": "string"
+              },
+              "action_ref": {
+                "type": "string"
+              },
+              "score": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "observation_committed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "opportunity_id",
+              "realized_quality",
+              "usable"
+            ],
+            "properties": {
+              "opportunity_id": {
+                "type": "string"
+              },
+              "realized_quality": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "usable": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "downlink_committed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "window_id",
+              "delivered_volume_mb"
+            ],
+            "properties": {
+              "window_id": {
+                "type": "string"
+              },
+              "delivered_volume_mb": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "reward_assessed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "total_reward"
+            ],
+            "properties": {
+              "total_reward": {
+                "type": "number"
+              },
+              "components": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number"
+                }
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "episode_ended"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "terminated",
+              "truncated",
+              "mission_utility"
+            ],
+            "properties": {
+              "terminated": {
+                "type": "boolean"
+              },
+              "truncated": {
+                "type": "boolean"
+              },
+              "mission_utility": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  ]
+}

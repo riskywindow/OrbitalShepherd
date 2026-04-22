@@ -1,0 +1,47 @@
+{
+  "config_type": "reward_shaping",
+  "reward_id": "reward:phase2-auditable-v1",
+  "benchmark_id": "osbench-phase2-foundation-v1",
+  "benchmark_metric_policy": "audit_only",
+  "decision_interval_seconds": 60,
+  "normalize_by_decision_interval": true,
+  "emit_component_trace": true,
+  "terms": [
+    {
+      "term_id": "reward-term:observation-value",
+      "source_component": "observation_value",
+      "weight": 1.0,
+      "description": "Keep direct credit for useful observations explicit and auditable."
+    },
+    {
+      "term_id": "reward-term:downlink-value",
+      "source_component": "downlink_value",
+      "weight": 1.15,
+      "description": "Slightly prioritize delivery because the mission value is not realized until packet emission."
+    },
+    {
+      "term_id": "reward-term:cloud-penalty",
+      "source_component": "cloud_penalty",
+      "weight": 1.0,
+      "description": "Preserve the existing penalty for unusable cloudy captures."
+    },
+    {
+      "term_id": "reward-term:latency-penalty",
+      "source_component": "latency_penalty",
+      "weight": 1.0,
+      "description": "Keep latency pressure separate from benchmark latency metrics."
+    },
+    {
+      "term_id": "reward-term:buffer-pressure",
+      "source_component": "buffer_pressure_penalty",
+      "weight": 1.0,
+      "description": "Discourage local queue saturation without rewriting benchmark metrics."
+    },
+    {
+      "term_id": "reward-term:missed-incident",
+      "source_component": "missed_incident_penalty",
+      "weight": 1.1,
+      "description": "Slightly amplify missed incident penalties to stabilize PPO credit assignment."
+    }
+  ]
+}

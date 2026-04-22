@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0.0",
+  "tactical_bundle_id": "tsb:inc-2026-08-14-ca-001:seed-42",
+  "bundle_fingerprint": "6666666666666666666666666666666666666666666666666666666666666666",
+  "tactical_manifest_id": "tsm:inc-2026-08-14-ca-001:seed-42",
+  "activation_id": "act:inc-2026-08-14-ca-001:tactical-0001",
+  "incident_packet_id": "pkt:inc-2026-08-14-ca-001:0001",
+  "region_bundle_id": "rb:norcal-sierra-foothills:v1",
+  "scenario_family": "wildfire_initial_attack",
+  "simulation_seed": 42,
+  "decision_interval_seconds": 300,
+  "time_window": {
+    "start_time_utc": "2026-08-14T04:30:00Z",
+    "end_time_utc": "2026-08-14T10:30:00Z"
+  },
+  "incident_packet": {
+    "schema_version": "1.0.0",
+    "packet_id": "pkt:inc-2026-08-14-ca-001:0001",
+    "incident_id": "inc:2026-08-14-ca-001",
+    "target_cell_id": "tc:8928308280fffff",
+    "observation_time_utc": "2026-08-14T03:34:00Z",
+    "downlink_time_utc": "2026-08-14T04:27:00Z",
+    "confidence": 0.88,
+    "urgency_score": 0.94,
+    "recommended_action": "dispatch_ground",
+    "observation_opportunity_id": "opp:sat-ember-01:tc-8928308280fffff:000124",
+    "downstream_value_estimate": 0.91,
+    "summary": "Thermal hotspot and smoke signature warrant immediate initial-attack planning."
+  },
+  "dispatch_units": [
+    {
+      "schema_version": "1.0.0",
+      "unit_id": "unit:eng-ember-01",
+      "callsign": "Ember Engine 01",
+      "unit_type": "engine",
+      "status": "assigned",
+      "home_facility_id": "fac:placerville-station-01",
+      "current_facility_id": "fac:placerville-station-01",
+      "travel_mode": "road",
+      "personnel_count": 4,
+      "equipment_capacity": 1500,
+      "location": {
+        "lat": 38.7296,
+        "lon": -120.7985,
+        "alt_m": 564
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "unit_id": "unit:heli-ember-01",
+      "callsign": "Ember Heli 01",
+      "unit_type": "helicopter",
+      "status": "available",
+      "home_facility_id": "fac:auburn-helibase-01",
+      "current_facility_id": "fac:auburn-helibase-01",
+      "travel_mode": "air",
+      "personnel_count": 5,
+      "equipment_capacity": 900,
+      "location": {
+        "lat": 38.9548,
+        "lon": -121.0823,
+        "alt_m": 467
+      }
+    }
+  ],
+  "facilities": [
+    {
+      "schema_version": "1.0.0",
+      "facility_id": "fac:placerville-station-01",
+      "facility_name": "Placerville Station 01",
+      "facility_type": "station",
+      "location": {
+        "lat": 38.7296,
+        "lon": -120.7985,
+        "alt_m": 564
+      },
+      "availability": "nominal",
+      "capacity_units": 6,
+      "supported_unit_types": [
+        "engine",
+        "crew",
+        "command"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "facility_id": "fac:auburn-helibase-01",
+      "facility_name": "Auburn Helibase 01",
+      "facility_type": "helibase",
+      "location": {
+        "lat": 38.9548,
+        "lon": -121.0823,
+        "alt_m": 467
+      },
+      "availability": "nominal",
+      "capacity_units": 3,
+      "supported_unit_types": [
+        "helicopter",
+        "air_tanker",
+        "command"
+      ]
+    }
+  ],
+  "route_plans": [
+    {
+      "schema_version": "1.0.0",
+      "route_plan_id": "route:eng-ember-01:inc-2026-08-14-ca-001:0001",
+      "unit_id": "unit:eng-ember-01",
+      "origin_facility_id": "fac:placerville-station-01",
+      "destination_facility_id": "fac:placerville-station-01",
+      "travel_mode": "road",
+      "status": "planned",
+      "distance_km": 18.4,
+      "estimated_duration_seconds": 1560,
+      "risk_score": 0.18,
+      "waypoints": [
+        {
+          "lat": 38.7296,
+          "lon": -120.7985,
+          "alt_m": 564
+        },
+        {
+          "lat": 38.705,
+          "lon": -120.754,
+          "alt_m": 601
+        },
+        {
+          "lat": 38.681,
+          "lon": -120.712,
+          "alt_m": 645
+        }
+      ],
+      "road_segment_ids": [
+        "road:seg-0001",
+        "road:seg-0002",
+        "road:seg-0003"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "route_plan_id": "route:heli-ember-01:inc-2026-08-14-ca-001:0001",
+      "unit_id": "unit:heli-ember-01",
+      "origin_facility_id": "fac:auburn-helibase-01",
+      "destination_facility_id": "fac:auburn-helibase-01",
+      "travel_mode": "air",
+      "status": "planned",
+      "distance_km": 26.2,
+      "estimated_duration_seconds": 720,
+      "risk_score": 0.08,
+      "waypoints": [
+        {
+          "lat": 38.9548,
+          "lon": -121.0823,
+          "alt_m": 467
+        },
+        {
+          "lat": 38.81,
+          "lon": -120.92,
+          "alt_m": 1100
+        },
+        {
+          "lat": 38.681,
+          "lon": -120.712,
+          "alt_m": 1220
+        }
+      ]
+    }
+  ],
+  "config": {
+    "planning_horizon_minutes": 360,
+    "max_active_routes": 4,
+    "reroute_on_blockage": true,
+    "notes": "Phase 3 tactical foundation example with deterministic route candidates only."
+  },
+  "compilation": {
+    "source_manifest_id": "tsm:inc-2026-08-14-ca-001:seed-42",
+    "source_manifest_schema_version": "1.0.0",
+    "source_manifest_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+    "compiled_at_utc": "2026-08-14T04:31:00Z",
+    "compiler_version": "orbital-shepherd-contracts/1.0.0"
+  }
+}

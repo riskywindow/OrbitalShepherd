@@ -1,0 +1,1 @@
+{"bundle_fingerprint":"a0e45b432b496628d3752d1e29ba7beb95e7d6e024397ad25a3e2743e81903cb","h3_cover":{"cell_count":3,"cell_ids":["8928308280fffff","8928341aec3ffff","8928d54250bffff"],"generation_strategy":"explicit","resolution":9},"region_bundle_id":"rb:fixture-micro-region:v1","traversable_edge_count":12,"traversable_node_count":8}

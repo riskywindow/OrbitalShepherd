@@ -1,0 +1,3 @@
+planner_id,episode_count,mission_utility_mean,useful_observation_value_captured_mean,cloud_waste_rate_mean,missed_urgent_incident_rate_mean,opportunity_utilization_efficiency_mean,ttfuo_mean_seconds,downlink_latency_mean_seconds
+random_valid_action,10,-6.494683,0.194252,0.759351,0.700000,0.019188,29847.272727,5090.769231
+urgency_greedy,10,-5.186346,0.194252,0.810833,0.700000,0.027118,29847.272727,5044.615385

@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "region_manifest_id": "rm:pilot-wui-region:v1",
+  "region_id": "region:pilot-wui-region",
+  "region_name": "Pilot Wildland Urban Interface Region",
+  "bounds": {
+    "min_lat": 38.676,
+    "min_lon": -120.86,
+    "max_lat": 38.78,
+    "max_lon": -120.69
+  },
+  "default_cell_size_m": 300,
+  "spatial_ingest_ids": [
+    "si:pilot-wui-region-roads:v1"
+  ],
+  "build_seed": 101,
+  "road_network": {
+    "sources": [
+      {
+        "ingest_id": "si:pilot-wui-region-roads:v1",
+        "source_kind": "fixture_geojson",
+        "source_name": "pilot-wui-local-extract",
+        "source_uri": "data/fixtures/region_builder/raw/pilot_wui_region_roads.geojson",
+        "fallback_priority": 0,
+        "notes": "Preferred when a checked-in or locally staged pilot extract is available."
+      },
+      {
+        "ingest_id": "si:pilot-wui-region-roads:v1",
+        "source_kind": "osmnx",
+        "source_name": "pilot-wui-osmnx-download",
+        "source_uri": "osmnx://pilot-wui-region",
+        "fallback_priority": 1,
+        "network_type": "drive",
+        "notes": "Optional OSMnx fallback for larger local pilot builds."
+      }
+    ],
+    "travel_time_defaults": {
+      "default_speed_kph": 40,
+      "speed_kph_by_highway": {
+        "motorway": 90,
+        "trunk": 80,
+        "primary": 65,
+        "secondary": 50,
+        "tertiary": 40,
+        "residential": 30,
+        "service": 20
+      },
+      "intersection_penalty_seconds": 5
+    }
+  },
+  "facilities": [
+    {
+      "schema_version": "1.0.0",
+      "facility_id": "fac:pilot-wui-station-01",
+      "facility_name": "Pilot WUI Station 01",
+      "facility_type": "station",
+      "location": {
+        "lat": 38.7325,
+        "lon": -120.7991,
+        "alt_m": 560
+      },
+      "availability": "nominal",
+      "capacity_units": 6,
+      "supported_unit_types": [
+        "engine",
+        "crew",
+        "command"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "facility_id": "fac:pilot-wui-helibase-01",
+      "facility_name": "Pilot WUI Helibase 01",
+      "facility_type": "helibase",
+      "location": {
+        "lat": 38.7488,
+        "lon": -120.7356,
+        "alt_m": 594
+      },
+      "availability": "nominal",
+      "capacity_units": 2,
+      "supported_unit_types": [
+        "helicopter",
+        "air_tanker",
+        "command"
+      ]
+    }
+  ],
+  "asset_features": [
+    {
+      "schema_version": "1.0.0",
+      "asset_id": "asset:pilot-wui-school-zone-01",
+      "asset_name": "Pilot WUI School Zone",
+      "asset_kind": "critical_facility_zone",
+      "geometry_type": "polygon",
+      "ring": [
+        {
+          "lat": 38.722,
+          "lon": -120.802
+        },
+        {
+          "lat": 38.742,
+          "lon": -120.802
+        },
+        {
+          "lat": 38.742,
+          "lon": -120.772
+        },
+        {
+          "lat": 38.722,
+          "lon": -120.772
+        },
+        {
+          "lat": 38.722,
+          "lon": -120.802
+        }
+      ],
+      "priority_class": "critical",
+      "tags": {
+        "category": "asset_zone"
+      }
+    }
+  ],
+  "h3_cover": {
+    "resolution": 8,
+    "strategy": "bounds"
+  },
+  "provenance_notes": [
+    "Pilot manifest prefers a local extract when present and otherwise uses the optional OSMnx path."
+  ],
+  "notes": "WUI pilot region for larger tactical routing demos."
+}

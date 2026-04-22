@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/tactical_activation.schema.json",
+  "title": "TacticalActivation",
+  "description": "Typed orbital-to-tactical bridge artifact rooted in the canonical IncidentPacket handoff.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "activation_id",
+    "incident_packet_id",
+    "region_bundle_id",
+    "activation_time_utc",
+    "activation_reason",
+    "requested_capabilities",
+    "activation_fingerprint",
+    "incident_packet"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "activation_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "incident_packet_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "region_bundle_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "activation_time_utc": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+    },
+    "activation_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requested_capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "activation_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "incident_packet": {
+      "$ref": "orbital-shepherd://contracts/v1.0/incident_packet.schema.json"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,523 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/tactical_replay_event.schema.json",
+  "title": "TacticalReplayEvent",
+  "description": "Canonical append-only replay envelope for tactical execution.",
+  "$defs": {
+    "base": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "event_id",
+        "episode_id",
+        "event_index",
+        "sim_tick",
+        "sim_time_utc",
+        "event_type",
+        "actor_type",
+        "actor_id",
+        "payload"
+      ],
+      "properties": {
+        "schema_version": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+        },
+        "event_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "episode_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "event_index": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+        },
+        "sim_tick": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+        },
+        "sim_time_utc": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+        },
+        "event_type": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalReplayEventType"
+        },
+        "actor_type": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalActorType"
+        },
+        "actor_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "tacticalActivationCreated": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "tactical_activation_created"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "activation_id",
+                "incident_packet_id",
+                "incident_id",
+                "region_bundle_id"
+              ],
+              "properties": {
+                "activation_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "incident_packet_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "incident_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "region_bundle_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "tacticalScenarioBundleLoaded": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "tactical_scenario_bundle_loaded"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "tactical_bundle_id",
+                "tactical_manifest_id",
+                "activation_id",
+                "scenario_family"
+              ],
+              "properties": {
+                "tactical_bundle_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "tactical_manifest_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "activation_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "scenario_family": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "tacticalEpisodeStarted": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "tactical_episode_started"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "planner_id",
+                "episode_fingerprint"
+              ],
+              "properties": {
+                "planner_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "episode_fingerprint": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "tacticalCandidateSetMaterialized": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "tactical_candidate_set_materialized"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "candidate_route_plan_count",
+                "available_unit_count",
+                "blocked_unit_count"
+              ],
+              "properties": {
+                "candidate_route_plan_count": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+                },
+                "available_unit_count": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+                },
+                "blocked_unit_count": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "tacticalActionSelected": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "tactical_action_selected"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "action_type",
+                "action_ref"
+              ],
+              "properties": {
+                "action_type": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "action_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "unit_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "score": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "dispatchUnitAssigned": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "dispatch_unit_assigned"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "unit_id",
+                "facility_id",
+                "incident_id"
+              ],
+              "properties": {
+                "unit_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "facility_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "incident_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "route_plan_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "routePlanCommitted": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "route_plan_committed"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "route_plan_id",
+                "unit_id",
+                "destination_facility_id",
+                "estimated_duration_seconds"
+              ],
+              "properties": {
+                "route_plan_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "unit_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "destination_facility_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "estimated_duration_seconds": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "unitPositionUpdated": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "unit_position_updated"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "unit_id",
+                "status",
+                "location"
+              ],
+              "properties": {
+                "unit_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "status": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/dispatchUnitStatus"
+                },
+                "location": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84GroundPoint"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "facilityStatusUpdated": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "facility_status_updated"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "facility_id",
+                "availability",
+                "queued_unit_count"
+              ],
+              "properties": {
+                "facility_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "availability": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/availability"
+                },
+                "queued_unit_count": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "incidentStateUpdated": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "incident_state_updated"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "incident_id",
+                "state",
+                "containment_progress"
+              ],
+              "properties": {
+                "incident_id": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+                },
+                "state": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalIncidentState"
+                },
+                "containment_progress": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "tacticalMetricsAssessed": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "tactical_metrics_assessed"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "operational_score"
+              ],
+              "properties": {
+                "operational_score": {
+                  "type": "number"
+                },
+                "components": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "number"
+                  }
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "tacticalEpisodeEnded": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "tactical_episode_ended"
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "terminated",
+                "truncated",
+                "containment_progress",
+                "dispatched_unit_count"
+              ],
+              "properties": {
+                "terminated": {
+                  "type": "boolean"
+                },
+                "truncated": {
+                  "type": "boolean"
+                },
+                "containment_progress": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+                },
+                "dispatched_unit_count": {
+                  "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/tacticalActivationCreated"
+    },
+    {
+      "$ref": "#/$defs/tacticalScenarioBundleLoaded"
+    },
+    {
+      "$ref": "#/$defs/tacticalEpisodeStarted"
+    },
+    {
+      "$ref": "#/$defs/tacticalCandidateSetMaterialized"
+    },
+    {
+      "$ref": "#/$defs/tacticalActionSelected"
+    },
+    {
+      "$ref": "#/$defs/dispatchUnitAssigned"
+    },
+    {
+      "$ref": "#/$defs/routePlanCommitted"
+    },
+    {
+      "$ref": "#/$defs/unitPositionUpdated"
+    },
+    {
+      "$ref": "#/$defs/facilityStatusUpdated"
+    },
+    {
+      "$ref": "#/$defs/incidentStateUpdated"
+    },
+    {
+      "$ref": "#/$defs/tacticalMetricsAssessed"
+    },
+    {
+      "$ref": "#/$defs/tacticalEpisodeEnded"
+    }
+  ]
+}

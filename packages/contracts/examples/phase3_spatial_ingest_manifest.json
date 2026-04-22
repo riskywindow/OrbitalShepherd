@@ -1,0 +1,19 @@
+{
+  "coverage_bounds": {
+    "max_lat": 38.705,
+    "max_lon": -120.7885,
+    "min_lat": 38.6975,
+    "min_lon": -120.8025
+  },
+  "feature_count": 4,
+  "ingest_time_utc": "2026-04-19T12:00:00Z",
+  "layer_type": "roads",
+  "notes": "Deterministic directed road graph normalized into canonical segment IDs and travel-time defaults. Small deterministic tactical region for smoke tests and contract validation.",
+  "region_id": "region:fixture-micro-region",
+  "schema_version": "1.0.0",
+  "source_fingerprint": "3ac603f0f8b826e5c60b494e2f88a2a5ddd6dc0c03b9b153fdac5424ac8d70f1",
+  "source_name": "fixture-micro-osm-roads",
+  "source_uri": "data/fixtures/region_builder/raw/fixture_micro_region_roads.geojson",
+  "spatial_ingest_id": "si:fixture-micro-region-roads:v1",
+  "transform_fingerprint": "bed4cc4c0a6bd94db605bf5163b76a761999731921ebdcdfe53d17466674f7cd"
+}

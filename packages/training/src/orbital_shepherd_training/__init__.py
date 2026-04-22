@@ -1,0 +1,153 @@
+"""Phase 2 training config, split, and artifact foundation."""
+
+from orbital_shepherd_training.bc_training import (
+    BehaviorCloningTrainingSummary,
+    train_behavior_cloning,
+)
+from orbital_shepherd_training.cli import build_parser, main
+from orbital_shepherd_training.evaluation import (
+    Phase2EvaluationSummary,
+    run_phase2_evaluation,
+)
+from orbital_shepherd_training.gym_compat import GYMNASIUM_AVAILABLE
+from orbital_shepherd_training.models import (
+    BehaviorCloningConfig,
+    CurriculumConfig,
+    EarlyStoppingConfig,
+    EvaluationConfig,
+    EvaluationReportManifest,
+    EvaluationRunManifest,
+    EvaluationRunPlanner,
+    ModelArchitectureConfig,
+    OfflineDatasetArtifact,
+    OfflineDatasetBuildManifest,
+    OfflineDatasetFeatureSchema,
+    OfflineDatasetManifest,
+    OfflineDatasetPlannerSource,
+    PolicyCheckpointManifest,
+    PolicyInitializationConfig,
+    PpoTrainingConfig,
+    RewardShapingConfig,
+    ScenarioSplitRegistry,
+    TrainingPackManifest,
+    WandbConfig,
+)
+from orbital_shepherd_training.offline_dataset import (
+    DEFAULT_EXPERT_PLANNER_IDS,
+    OFFLINE_DATASET_SCHEMA_VERSION,
+    OfflineEpisodeRecord,
+    OfflineTransitionRecord,
+    build_offline_datasets,
+    inspect_offline_dataset,
+)
+from orbital_shepherd_training.paths import (
+    PHASE2_BENCHMARK_ID,
+    phase2_dataset_root,
+    training_manifest_root,
+)
+from orbital_shepherd_training.policy_checkpointing import (
+    ExportedPolicyCheckpoint,
+    build_phase2_policy_model,
+    build_phase2_rl_module,
+    export_phase2_policy_checkpoint,
+    load_policy_checkpoint_manifest,
+    load_raw_policy_state_dict,
+    resolve_policy_initialization_manifest,
+    resolve_rllib_module_path,
+    validate_policy_checkpoint_compatibility,
+)
+from orbital_shepherd_training.registry import (
+    build_phase2_split_registry,
+    build_phase2_training_pack,
+    phase2_artifact_layout,
+    phase2_split_registry,
+    validate_phase2_configs,
+    validate_phase2_split_registry,
+    validate_phase2_training_pack,
+)
+from orbital_shepherd_training.rllib_env import (
+    RLLIB_PHASE2_ENV_ID,
+    RllibOrbitalTrainingEnv,
+    register_orbital_rllib_env,
+)
+from orbital_shepherd_training.rllib_module import OrbitalMaskedActionTorchRLModule
+from orbital_shepherd_training.rllib_training import (
+    RllibPpoTrainingSummary,
+    train_ppo_with_rllib,
+)
+from orbital_shepherd_training.tracking import NoopWandbRun, maybe_init_wandb
+from orbital_shepherd_training.training_env import (
+    CANDIDATE_FEATURE_SPECS,
+    GLOBAL_FEATURE_SPECS,
+    FlattenedOrbitalTrainingEnv,
+    OrbitalTrainingEnv,
+    flatten_training_observation,
+)
+
+__all__ = [
+    "BehaviorCloningConfig",
+    "BehaviorCloningTrainingSummary",
+    "CANDIDATE_FEATURE_SPECS",
+    "CurriculumConfig",
+    "EarlyStoppingConfig",
+    "EvaluationConfig",
+    "EvaluationReportManifest",
+    "EvaluationRunManifest",
+    "EvaluationRunPlanner",
+    "ExportedPolicyCheckpoint",
+    "FlattenedOrbitalTrainingEnv",
+    "GLOBAL_FEATURE_SPECS",
+    "GYMNASIUM_AVAILABLE",
+    "ModelArchitectureConfig",
+    "NoopWandbRun",
+    "DEFAULT_EXPERT_PLANNER_IDS",
+    "OFFLINE_DATASET_SCHEMA_VERSION",
+    "OfflineDatasetArtifact",
+    "OfflineDatasetBuildManifest",
+    "OfflineDatasetFeatureSchema",
+    "OfflineDatasetManifest",
+    "OfflineDatasetPlannerSource",
+    "OfflineEpisodeRecord",
+    "OfflineTransitionRecord",
+    "OrbitalTrainingEnv",
+    "PHASE2_BENCHMARK_ID",
+    "Phase2EvaluationSummary",
+    "PolicyCheckpointManifest",
+    "PolicyInitializationConfig",
+    "PpoTrainingConfig",
+    "RLLIB_PHASE2_ENV_ID",
+    "RllibOrbitalTrainingEnv",
+    "RllibPpoTrainingSummary",
+    "OrbitalMaskedActionTorchRLModule",
+    "RewardShapingConfig",
+    "ScenarioSplitRegistry",
+    "TrainingPackManifest",
+    "WandbConfig",
+    "build_parser",
+    "build_offline_datasets",
+    "build_phase2_policy_model",
+    "build_phase2_rl_module",
+    "build_phase2_split_registry",
+    "build_phase2_training_pack",
+    "export_phase2_policy_checkpoint",
+    "load_policy_checkpoint_manifest",
+    "load_raw_policy_state_dict",
+    "main",
+    "maybe_init_wandb",
+    "phase2_artifact_layout",
+    "phase2_dataset_root",
+    "phase2_split_registry",
+    "run_phase2_evaluation",
+    "register_orbital_rllib_env",
+    "resolve_policy_initialization_manifest",
+    "resolve_rllib_module_path",
+    "training_manifest_root",
+    "inspect_offline_dataset",
+    "train_behavior_cloning",
+    "train_ppo_with_rllib",
+    "validate_policy_checkpoint_compatibility",
+    "validate_phase2_configs",
+    "validate_phase2_split_registry",
+    "validate_phase2_training_pack",
+    "flatten_training_observation",
+]

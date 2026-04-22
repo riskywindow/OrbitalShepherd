@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/target_cell.schema.json",
+  "title": "TargetCell",
+  "description": "Spatial tasking cell identified by H3.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "target_cell_id",
+    "h3_cell",
+    "centroid",
+    "static_value"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "target_cell_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "h3_cell": {
+      "type": "string",
+      "minLength": 1
+    },
+    "centroid": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84Point"
+    },
+    "region_name": {
+      "type": "string"
+    },
+    "static_value": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+    },
+    "priority_class": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/priorityClass"
+    }
+  },
+  "additionalProperties": false
+}

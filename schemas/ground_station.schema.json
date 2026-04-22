@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://schemas/v0.1/ground_station.schema.json",
+  "title": "GroundStation",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "station_id",
+    "name",
+    "location",
+    "capabilities"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "station_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "object",
+      "required": [
+        "lat",
+        "lon",
+        "alt_m"
+      ],
+      "properties": {
+        "lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "lon": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "alt_m": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "max_concurrent_contacts",
+        "downlink_rate_mbps",
+        "availability"
+      ],
+      "properties": {
+        "max_concurrent_contacts": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "downlink_rate_mbps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "availability": {
+          "type": "string",
+          "enum": [
+            "nominal",
+            "degraded",
+            "offline"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

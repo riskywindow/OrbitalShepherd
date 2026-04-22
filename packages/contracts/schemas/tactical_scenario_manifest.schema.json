@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/tactical_scenario_manifest.schema.json",
+  "title": "TacticalScenarioManifest",
+  "description": "Authoring manifest for a tactical scenario instantiated from a TacticalActivation.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "tactical_manifest_id",
+    "activation_id",
+    "incident_packet_id",
+    "region_bundle_id",
+    "scenario_family",
+    "simulation_seed",
+    "decision_interval_seconds",
+    "time_window",
+    "incident_packet",
+    "dispatch_units",
+    "facilities",
+    "operational_objectives",
+    "config"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "tactical_manifest_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "activation_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "incident_packet_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "region_bundle_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "scenario_family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "simulation_seed": {
+      "type": "integer"
+    },
+    "decision_interval_seconds": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+    },
+    "time_window": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/timeWindow"
+    },
+    "incident_packet": {
+      "$ref": "orbital-shepherd://contracts/v1.0/incident_packet.schema.json"
+    },
+    "dispatch_units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/dispatch_unit.schema.json"
+      }
+    },
+    "facilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/facility.schema.json"
+      }
+    },
+    "operational_objectives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "config": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalScenarioConfig"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,15 @@
+{
+  "package": "orbital_shepherd_phase0",
+  "version": "0.1.0",
+  "deliverables": [
+    "mission_rfc",
+    "architecture_design",
+    "benchmark_spec",
+    "data_contracts",
+    "planner_api_contract",
+    "schema_bundle",
+    "sample_scenario",
+    "sample_replay",
+    "architecture_diagram"
+  ]
+}

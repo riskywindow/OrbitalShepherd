@@ -1,0 +1,253 @@
+openapi: 3.1.0
+info:
+  title: Orbital Shepherd Planner API
+  version: 0.1.0
+  summary: Phase 0 interface contract for scenario, episode, baseline, and replay operations.
+servers:
+  - url: https://orbital-shepherd.local
+paths:
+  /v1/health:
+    get:
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service health
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status:
+                    type: string
+                    enum: [ok]
+  /v1/scenarios:
+    post:
+      operationId: registerScenario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScenarioBundle'
+      responses:
+        '201':
+          description: Scenario registered
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [bundle_id]
+                properties:
+                  bundle_id:
+                    type: string
+  /v1/scenarios/{bundleId}:
+    get:
+      operationId: getScenario
+      parameters:
+        - in: path
+          name: bundleId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Scenario artifact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioBundle'
+  /v1/episodes:
+    post:
+      operationId: startEpisode
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [bundle_id, planner_id, simulation_seed]
+              properties:
+                bundle_id:
+                  type: string
+                planner_id:
+                  type: string
+                simulation_seed:
+                  type: integer
+      responses:
+        '201':
+          description: Episode created
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [episode_id]
+                properties:
+                  episode_id:
+                    type: string
+  /v1/episodes/{episodeId}/step:
+    post:
+      operationId: stepEpisode
+      parameters:
+        - in: path
+          name: episodeId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action]
+              properties:
+                action:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Step result
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [episode_id, sim_tick, terminated, truncated]
+                properties:
+                  episode_id:
+                    type: string
+                  sim_tick:
+                    type: integer
+                  terminated:
+                    type: boolean
+                  truncated:
+                    type: boolean
+  /v1/episodes/{episodeId}/events:
+    get:
+      operationId: listEpisodeEvents
+      parameters:
+        - in: path
+          name: episodeId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ordered replay events
+          content:
+            application/x-ndjson:
+              schema:
+                type: string
+  /v1/episodes/{episodeId}/metrics:
+    get:
+      operationId: getEpisodeMetrics
+      parameters:
+        - in: path
+          name: episodeId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Episode metrics
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /v1/baselines/{baselineId}/run:
+    post:
+      operationId: runBaseline
+      parameters:
+        - in: path
+          name: baselineId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [bundle_id, simulation_seed]
+              properties:
+                bundle_id:
+                  type: string
+                simulation_seed:
+                  type: integer
+      responses:
+        '202':
+          description: Baseline run accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [job_id]
+                properties:
+                  job_id:
+                    type: string
+components:
+  schemas:
+    ScenarioBundle:
+      type: object
+      required:
+        - schema_version
+        - bundle_id
+        - benchmark_id
+        - scenario_family
+        - simulation_seed
+        - decision_interval_seconds
+        - time_window
+        - satellites
+        - ground_stations
+        - target_cells
+        - incidents
+        - config
+      properties:
+        schema_version:
+          type: string
+        bundle_id:
+          type: string
+        benchmark_id:
+          type: string
+        scenario_family:
+          type: string
+        simulation_seed:
+          type: integer
+        decision_interval_seconds:
+          type: integer
+          minimum: 1
+        time_window:
+          type: object
+          required: [start_time_utc, end_time_utc]
+          properties:
+            start_time_utc:
+              type: string
+              format: date-time
+            end_time_utc:
+              type: string
+              format: date-time
+        satellites:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        ground_stations:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        target_cells:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        incidents:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        config:
+          type: object
+          additionalProperties: true

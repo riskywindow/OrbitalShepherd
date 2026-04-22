@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orbital-shepherd://contracts/v1.0/scenario_manifest.schema.json",
+  "title": "ScenarioManifest",
+  "description": "Authoring recipe for a deterministic scenario before compilation into a runtime bundle.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "manifest_id",
+    "benchmark_id",
+    "scenario_family",
+    "simulation_seed",
+    "decision_interval_seconds",
+    "time_window",
+    "satellites",
+    "ground_stations",
+    "target_cells",
+    "incidents",
+    "config"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+    },
+    "manifest_id": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "benchmark_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scenario_family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "simulation_seed": {
+      "type": "integer"
+    },
+    "decision_interval_seconds": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+    },
+    "time_window": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/timeWindow"
+    },
+    "satellites": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/satellite.schema.json"
+      }
+    },
+    "ground_stations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/ground_station.schema.json"
+      }
+    },
+    "target_cells": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/target_cell.schema.json"
+      }
+    },
+    "incidents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/incident.schema.json"
+      }
+    },
+    "config": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/scenarioConfig"
+    }
+  },
+  "additionalProperties": false
+}

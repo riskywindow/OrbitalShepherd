@@ -1,0 +1,76 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_way_id": "1001",
+        "name": "Pine Ridge Road",
+        "highway": "residential",
+        "oneway": "no",
+        "maxspeed_kph": 30
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-120.8005, 38.7002],
+          [-120.7968, 38.7002],
+          [-120.7931, 38.7010]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_way_id": "1002",
+        "name": "Lookout Spur",
+        "highway": "secondary",
+        "oneway": "yes",
+        "maxspeed_kph": 45
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-120.7968, 38.6985],
+          [-120.7968, 38.7002],
+          [-120.7958, 38.7034]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_way_id": "1003",
+        "name": "Cedar Loop",
+        "highway": "tertiary",
+        "oneway": "no",
+        "maxspeed_kph": 35
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-120.7931, 38.7010],
+          [-120.7904, 38.7020],
+          [-120.7891, 38.7042]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_way_id": "1004",
+        "name": "Station Access",
+        "highway": "service",
+        "oneway": "no",
+        "maxspeed_kph": 20
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-120.8005, 38.7002],
+          [-120.8013, 38.7021]
+        ]
+      }
+    }
+  ]
+}
