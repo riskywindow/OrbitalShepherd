@@ -10,6 +10,7 @@
     "bundle_fingerprint",
     "tactical_manifest_id",
     "activation_id",
+    "activation_fingerprint",
     "incident_packet_id",
     "region_bundle_id",
     "scenario_family",
@@ -17,8 +18,13 @@
     "decision_interval_seconds",
     "time_window",
     "incident_packet",
+    "region_selection",
+    "incident_context",
+    "bridge_provenance",
     "dispatch_units",
     "facilities",
+    "depot_assignments",
+    "operational_objectives",
     "route_plans",
     "config",
     "compilation"
@@ -39,6 +45,10 @@
     },
     "activation_id": {
       "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+    },
+    "activation_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
     },
     "incident_packet_id": {
       "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
@@ -62,6 +72,15 @@
     "incident_packet": {
       "$ref": "orbital-shepherd://contracts/v1.0/incident_packet.schema.json"
     },
+    "region_selection": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalRegionSelection"
+    },
+    "incident_context": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalIncidentContext"
+    },
+    "bridge_provenance": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalBridgeProvenance"
+    },
     "dispatch_units": {
       "type": "array",
       "minItems": 1,
@@ -74,6 +93,33 @@
       "minItems": 1,
       "items": {
         "$ref": "orbital-shepherd://contracts/v1.0/facility.schema.json"
+      }
+    },
+    "depot_assignments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalDepotAssignment"
+      }
+    },
+    "scout_assets": {
+      "type": "array",
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/scoutAsset"
+      }
+    },
+    "overlay_events": {
+      "type": "array",
+      "items": {
+        "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalOverlayEvent"
+      }
+    },
+    "operational_objectives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
       }
     },
     "route_plans": {

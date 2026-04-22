@@ -58,6 +58,14 @@ export type TacticalIncidentState =
   | "engaged"
   | "contained"
   | "demobilized";
+export type TacticalSeverityClass = "moderate" | "high" | "very_high" | "extreme";
+export type RegionResolutionStrategy =
+  | "explicit_bundle"
+  | "h3_cover"
+  | "fallback_single_bundle";
+export type ScoutAssetType = "drone" | "scout_team" | "lookout";
+export type ScoutAssetStatus = "available" | "deployed" | "offline" | "maintenance";
+export type OverlayEventKind = "closure" | "risk_zone" | "temporary_penalty";
 export type TacticalActorType =
   | "system"
   | "planner"
@@ -413,6 +421,85 @@ export interface RegionBundle {
   compilation: BundleCompilation;
 }
 
+export interface TacticalIncidentGeometry {
+  centroid: Wgs84Point;
+  estimated_area_ha: number;
+  perimeter_ring?: Wgs84Point[];
+}
+
+export interface TacticalIncidentContext {
+  incident_id: string;
+  target_cell_id: string;
+  geometry: TacticalIncidentGeometry;
+  severity_class: TacticalSeverityClass;
+  severity_score: number;
+  urgency_score: number;
+  confidence: number;
+  downstream_value_estimate?: number;
+  recommended_action: RecommendedAction;
+  activation_delay_seconds: number;
+  summary?: string;
+}
+
+export interface TacticalRegionSelection {
+  region_id: string;
+  region_manifest_id: string;
+  region_bundle_id: string;
+  region_bundle_fingerprint: string;
+  resolution_strategy: RegionResolutionStrategy;
+  matched_h3_cell?: string;
+  candidate_region_bundle_ids?: string[];
+}
+
+export interface TacticalBridgeProvenance {
+  bridge_kind: "incident_packet_to_tactical_activation";
+  source_packet_id: string;
+  source_observation_time_utc: string;
+  source_downlink_time_utc: string;
+  bridge_version: string;
+  notes?: string[];
+}
+
+export interface TacticalDepotAssignment {
+  unit_id: string;
+  depot_facility_id: string;
+  assignment_role: string;
+  queue_order?: number;
+}
+
+export interface ScoutAsset {
+  schema_version: typeof PHASE1_SCHEMA_VERSION;
+  scout_asset_id: string;
+  asset_name: string;
+  asset_type: ScoutAssetType;
+  status: ScoutAssetStatus;
+  home_facility_id?: string;
+  location: Wgs84GroundPoint;
+  endurance_minutes: number;
+  sensor_focus?: string[];
+}
+
+export interface TacticalOverlayEdgeEffect {
+  edge_id: string;
+  closed?: boolean;
+  cost_multiplier?: number;
+  speed_cap_kph?: number;
+  delay_seconds?: number;
+  reason?: string;
+}
+
+export interface TacticalOverlayEvent {
+  overlay_event_id: string;
+  overlay_kind: OverlayEventKind;
+  title: string;
+  summary?: string;
+  severity_score: number;
+  window?: TimeWindow;
+  edge_effects?: TacticalOverlayEdgeEffect[];
+  zone_ring?: Wgs84Point[];
+  affected_asset_ids?: string[];
+}
+
 export interface TacticalActivation {
   schema_version: typeof PHASE1_SCHEMA_VERSION;
   activation_id: string;
@@ -422,6 +509,10 @@ export interface TacticalActivation {
   activation_reason: string;
   requested_capabilities: string[];
   activation_fingerprint: string;
+  region_selection: TacticalRegionSelection;
+  incident_context: TacticalIncidentContext;
+  bridge_provenance: TacticalBridgeProvenance;
+  provenance_notes?: string[];
   incident_packet: IncidentPacket;
 }
 
@@ -429,6 +520,7 @@ export interface TacticalScenarioManifest {
   schema_version: typeof PHASE1_SCHEMA_VERSION;
   tactical_manifest_id: string;
   activation_id: string;
+  activation_fingerprint: string;
   incident_packet_id: string;
   region_bundle_id: string;
   scenario_family: string;
@@ -436,8 +528,14 @@ export interface TacticalScenarioManifest {
   decision_interval_seconds: number;
   time_window: TimeWindow;
   incident_packet: IncidentPacket;
+  region_selection: TacticalRegionSelection;
+  incident_context: TacticalIncidentContext;
+  bridge_provenance: TacticalBridgeProvenance;
   dispatch_units: DispatchUnit[];
   facilities: Facility[];
+  depot_assignments: TacticalDepotAssignment[];
+  scout_assets?: ScoutAsset[];
+  overlay_events?: TacticalOverlayEvent[];
   operational_objectives: string[];
   config: TacticalScenarioConfig;
 }
@@ -448,6 +546,7 @@ export interface TacticalScenarioBundle {
   bundle_fingerprint: string;
   tactical_manifest_id: string;
   activation_id: string;
+  activation_fingerprint: string;
   incident_packet_id: string;
   region_bundle_id: string;
   scenario_family: string;
@@ -455,8 +554,15 @@ export interface TacticalScenarioBundle {
   decision_interval_seconds: number;
   time_window: TimeWindow;
   incident_packet: IncidentPacket;
+  region_selection: TacticalRegionSelection;
+  incident_context: TacticalIncidentContext;
+  bridge_provenance: TacticalBridgeProvenance;
   dispatch_units: DispatchUnit[];
   facilities: Facility[];
+  depot_assignments: TacticalDepotAssignment[];
+  scout_assets?: ScoutAsset[];
+  overlay_events?: TacticalOverlayEvent[];
+  operational_objectives: string[];
   route_plans: RoutePlan[];
   config: TacticalScenarioConfig;
   compilation: BundleCompilation;
