@@ -14,7 +14,10 @@ PHASE2_EVAL_RUN_ID ?= evalrun--phase2-heldout-smoke-v1
 PHASE2_EVAL_LIMIT ?= 1
 PHASE2_BASELINE_ID ?= urgency_greedy
 
-.PHONY: lint typecheck test contracts-validate scenario-pack-build scenario-pack-validate benchmark-run api-dev web-install web-dev web-build web-lint web-format-check phase1-prepare phase1-verify phase2-config-validate phase2-split-build phase2-pack-build phase2-pack-validate phase2-dataset-build phase2-bc-train phase2-ppo-train phase2-smoke phase2-train phase2-eval phase2-demo phase2-demo-prepare demo quickstart check
+PHASE3_ROUTING_COMPOSE_FILE ?= infra/compose/phase3-routing.compose.yaml
+PHASE3_ROUTING_DSN ?= postgresql://orbital:orbital@127.0.0.1:55432/orbital_shepherd_phase3
+
+.PHONY: lint typecheck test contracts-validate scenario-pack-build scenario-pack-validate benchmark-run api-dev web-install web-dev web-build web-lint web-format-check phase1-prepare phase1-verify phase2-config-validate phase2-split-build phase2-pack-build phase2-pack-validate phase2-dataset-build phase2-bc-train phase2-ppo-train phase2-smoke phase2-train phase2-eval phase2-demo phase2-demo-prepare phase3-routing-up phase3-routing-down phase3-routing-bootstrap phase3-routing-ingest-fixture phase3-routing-smoke demo quickstart check
 
 lint:
 	ruff check apps/api/src packages tests
@@ -95,6 +98,21 @@ phase2-demo-prepare:
 
 phase2-demo:
 	$(PYTHON) scripts/phase2_demo.py serve --checkpoint-manifest $(PHASE2_PPO_ALIAS) --baseline-id $(PHASE2_BASELINE_ID)
+
+phase3-routing-up:
+	docker compose -f $(PHASE3_ROUTING_COMPOSE_FILE) up -d
+
+phase3-routing-down:
+	docker compose -f $(PHASE3_ROUTING_COMPOSE_FILE) down
+
+phase3-routing-bootstrap:
+	$(PYTHON) scripts/phase3_routing.py --dsn $(PHASE3_ROUTING_DSN) bootstrap-db
+
+phase3-routing-ingest-fixture:
+	$(PYTHON) scripts/phase3_routing.py --dsn $(PHASE3_ROUTING_DSN) ingest-bundle data/fixtures/region_builder/compiled/fixture_micro_region_bundle.json
+
+phase3-routing-smoke:
+	$(PYTHON) scripts/phase3_routing.py --dsn $(PHASE3_ROUTING_DSN) smoke
 
 demo quickstart:
 	$(PYTHON) scripts/phase1_demo.py serve
