@@ -255,6 +255,48 @@
         "demobilized"
       ]
     },
+    "tacticalSeverityClass": {
+      "type": "string",
+      "enum": [
+        "moderate",
+        "high",
+        "very_high",
+        "extreme"
+      ]
+    },
+    "regionResolutionStrategy": {
+      "type": "string",
+      "enum": [
+        "explicit_bundle",
+        "h3_cover",
+        "fallback_single_bundle"
+      ]
+    },
+    "scoutAssetType": {
+      "type": "string",
+      "enum": [
+        "drone",
+        "scout_team",
+        "lookout"
+      ]
+    },
+    "scoutAssetStatus": {
+      "type": "string",
+      "enum": [
+        "available",
+        "deployed",
+        "offline",
+        "maintenance"
+      ]
+    },
+    "overlayEventKind": {
+      "type": "string",
+      "enum": [
+        "closure",
+        "risk_zone",
+        "temporary_penalty"
+      ]
+    },
     "timeWindow": {
       "type": "object",
       "required": [
@@ -335,6 +377,308 @@
         }
       },
       "additionalProperties": true
+    },
+    "tacticalIncidentGeometry": {
+      "type": "object",
+      "required": [
+        "centroid",
+        "estimated_area_ha"
+      ],
+      "properties": {
+        "centroid": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84Point"
+        },
+        "estimated_area_ha": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+        },
+        "perimeter_ring": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84Point"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "tacticalIncidentContext": {
+      "type": "object",
+      "required": [
+        "incident_id",
+        "target_cell_id",
+        "geometry",
+        "severity_class",
+        "severity_score",
+        "urgency_score",
+        "confidence",
+        "recommended_action",
+        "activation_delay_seconds"
+      ],
+      "properties": {
+        "incident_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "target_cell_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "geometry": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalIncidentGeometry"
+        },
+        "severity_class": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalSeverityClass"
+        },
+        "severity_score": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+        },
+        "urgency_score": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+        },
+        "confidence": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+        },
+        "downstream_value_estimate": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+        },
+        "recommended_action": {
+          "type": "string",
+          "enum": [
+            "monitor",
+            "dispatch_recon",
+            "dispatch_ground"
+          ]
+        },
+        "activation_delay_seconds": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+        },
+        "summary": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "tacticalRegionSelection": {
+      "type": "object",
+      "required": [
+        "region_id",
+        "region_manifest_id",
+        "region_bundle_id",
+        "region_bundle_fingerprint",
+        "resolution_strategy"
+      ],
+      "properties": {
+        "region_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "region_manifest_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "region_bundle_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "region_bundle_fingerprint": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "resolution_strategy": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/regionResolutionStrategy"
+        },
+        "matched_h3_cell": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidate_region_bundle_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "tacticalBridgeProvenance": {
+      "type": "object",
+      "required": [
+        "bridge_kind",
+        "source_packet_id",
+        "source_observation_time_utc",
+        "source_downlink_time_utc",
+        "bridge_version"
+      ],
+      "properties": {
+        "bridge_kind": {
+          "type": "string",
+          "const": "incident_packet_to_tactical_activation"
+        },
+        "source_packet_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "source_observation_time_utc": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+        },
+        "source_downlink_time_utc": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/utcTimestamp"
+        },
+        "bridge_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "tacticalDepotAssignment": {
+      "type": "object",
+      "required": [
+        "unit_id",
+        "depot_facility_id",
+        "assignment_role"
+      ],
+      "properties": {
+        "unit_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "depot_facility_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "assignment_role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "queue_order": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scoutAsset": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "scout_asset_id",
+        "asset_name",
+        "asset_type",
+        "status",
+        "location",
+        "endurance_minutes"
+      ],
+      "properties": {
+        "schema_version": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/schemaVersion"
+        },
+        "scout_asset_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "asset_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "asset_type": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/scoutAssetType"
+        },
+        "status": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/scoutAssetStatus"
+        },
+        "home_facility_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "location": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84GroundPoint"
+        },
+        "endurance_minutes": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveInteger"
+        },
+        "sensor_focus": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "tacticalOverlayEdgeEffect": {
+      "type": "object",
+      "required": [
+        "edge_id"
+      ],
+      "properties": {
+        "edge_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "closed": {
+          "type": "boolean"
+        },
+        "cost_multiplier": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveNumber"
+        },
+        "speed_cap_kph": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/positiveNumber"
+        },
+        "delay_seconds": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/nonNegativeNumber"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "tacticalOverlayEvent": {
+      "type": "object",
+      "required": [
+        "overlay_event_id",
+        "overlay_kind",
+        "title",
+        "severity_score"
+      ],
+      "properties": {
+        "overlay_event_id": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+        },
+        "overlay_kind": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/overlayEventKind"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string"
+        },
+        "severity_score": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/probability"
+        },
+        "window": {
+          "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/timeWindow"
+        },
+        "edge_effects": {
+          "type": "array",
+          "items": {
+            "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalOverlayEdgeEffect"
+          }
+        },
+        "zone_ring": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/wgs84Point"
+          }
+        },
+        "affected_asset_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/namespacedId"
+          }
+        }
+      },
+      "additionalProperties": false
     }
   }
 }

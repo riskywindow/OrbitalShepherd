@@ -51,6 +51,11 @@ RegionGeometryType = Literal["point", "polygon"]
 H3CoverStrategy = Literal["explicit", "bounds"]
 RoutePlanStatus = Literal["planned", "active", "completed", "aborted"]
 TacticalIncidentState = Literal["reported", "mobilizing", "engaged", "contained", "demobilized"]
+TacticalSeverityClass = Literal["moderate", "high", "very_high", "extreme"]
+RegionResolutionStrategy = Literal["explicit_bundle", "h3_cover", "fallback_single_bundle"]
+ScoutAssetType = Literal["drone", "scout_team", "lookout"]
+ScoutAssetStatus = Literal["available", "deployed", "offline", "maintenance"]
+OverlayEventKind = Literal["closure", "risk_zone", "temporary_penalty"]
 TacticalActorType = Literal[
     "system",
     "planner",
@@ -496,6 +501,134 @@ class RegionBundle(Phase1ContractModel):
     compilation: BundleCompilation
 
 
+class TacticalIncidentGeometry(ContractModel):
+    centroid: Wgs84Point
+    estimated_area_ha: float = Field(ge=0)
+    perimeter_ring: list[Wgs84Point] | None = None
+
+    @model_validator(mode="after")
+    def _validate_geometry(self) -> TacticalIncidentGeometry:
+        if self.perimeter_ring is None:
+            return self
+        if len(self.perimeter_ring) < 4:
+            raise ValueError("perimeter_ring must contain at least four points")
+        if self.perimeter_ring[0] != self.perimeter_ring[-1]:
+            raise ValueError("perimeter_ring must be closed")
+        return self
+
+
+class TacticalIncidentContext(ContractModel):
+    incident_id: NamespacedId
+    target_cell_id: NamespacedId
+    geometry: TacticalIncidentGeometry
+    severity_class: TacticalSeverityClass
+    severity_score: float = Field(ge=0, le=1)
+    urgency_score: float = Field(ge=0, le=1)
+    confidence: float = Field(ge=0, le=1)
+    downstream_value_estimate: float | None = Field(default=None, ge=0)
+    recommended_action: RecommendedAction
+    activation_delay_seconds: int = Field(ge=0)
+    summary: str | None = None
+
+
+class TacticalRegionSelection(ContractModel):
+    region_id: NamespacedId
+    region_manifest_id: NamespacedId
+    region_bundle_id: NamespacedId
+    region_bundle_fingerprint: Annotated[str, StringConstraints(pattern=r"^[a-f0-9]{64}$")]
+    resolution_strategy: RegionResolutionStrategy
+    matched_h3_cell: NonEmptyString | None = None
+    candidate_region_bundle_ids: list[NamespacedId] = Field(default_factory=list)
+
+
+class TacticalBridgeProvenance(ContractModel):
+    bridge_kind: Literal["incident_packet_to_tactical_activation"] = (
+        "incident_packet_to_tactical_activation"
+    )
+    source_packet_id: NamespacedId
+    source_observation_time_utc: datetime
+    source_downlink_time_utc: datetime
+    bridge_version: NonEmptyString
+    notes: list[NonEmptyString] = Field(default_factory=list)
+
+    _validate_observation = field_validator("source_observation_time_utc")(_ensure_utc)
+    _validate_downlink = field_validator("source_downlink_time_utc")(_ensure_utc)
+
+    @model_validator(mode="after")
+    def _validate_order(self) -> TacticalBridgeProvenance:
+        if self.source_downlink_time_utc < self.source_observation_time_utc:
+            raise ValueError(
+                "source_downlink_time_utc must be greater than or equal to "
+                "source_observation_time_utc"
+            )
+        return self
+
+
+class TacticalDepotAssignment(ContractModel):
+    unit_id: NamespacedId
+    depot_facility_id: NamespacedId
+    assignment_role: NonEmptyString
+    queue_order: int = Field(default=0, ge=0)
+
+
+class ScoutAsset(Phase1ContractModel):
+    scout_asset_id: NamespacedId
+    asset_name: NonEmptyString
+    asset_type: ScoutAssetType
+    status: ScoutAssetStatus
+    home_facility_id: NamespacedId | None = None
+    location: Wgs84GroundPoint
+    endurance_minutes: int = Field(ge=1)
+    sensor_focus: list[NonEmptyString] = Field(default_factory=list)
+
+
+class TacticalOverlayEdgeEffect(ContractModel):
+    edge_id: NamespacedId
+    closed: bool = False
+    cost_multiplier: float | None = Field(default=None, gt=0)
+    speed_cap_kph: float | None = Field(default=None, gt=0)
+    delay_seconds: float = Field(default=0, ge=0)
+    reason: str | None = None
+
+    @model_validator(mode="after")
+    def _validate_effect(self) -> TacticalOverlayEdgeEffect:
+        if (
+            not self.closed
+            and self.cost_multiplier is None
+            and self.speed_cap_kph is None
+            and self.delay_seconds == 0
+        ):
+            raise ValueError(
+                "overlay edge effects require a closure, cost multiplier, speed cap, or delay"
+            )
+        return self
+
+
+class TacticalOverlayEvent(ContractModel):
+    overlay_event_id: NamespacedId
+    overlay_kind: OverlayEventKind
+    title: NonEmptyString
+    summary: str | None = None
+    severity_score: float = Field(ge=0, le=1)
+    window: TimeWindow | None = None
+    edge_effects: list[TacticalOverlayEdgeEffect] = Field(default_factory=list)
+    zone_ring: list[Wgs84Point] | None = None
+    affected_asset_ids: list[NamespacedId] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def _validate_event(self) -> TacticalOverlayEvent:
+        if self.zone_ring is not None:
+            if len(self.zone_ring) < 4:
+                raise ValueError("zone_ring must contain at least four points")
+            if self.zone_ring[0] != self.zone_ring[-1]:
+                raise ValueError("zone_ring must be closed")
+        if not self.edge_effects and self.zone_ring is None and not self.affected_asset_ids:
+            raise ValueError(
+                "overlay events require edge_effects, a zone_ring, or affected_asset_ids"
+            )
+        return self
+
+
 class TacticalActivation(Phase1ContractModel):
     activation_id: NamespacedId
     incident_packet_id: NamespacedId
@@ -504,6 +637,10 @@ class TacticalActivation(Phase1ContractModel):
     activation_reason: NonEmptyString
     requested_capabilities: list[NonEmptyString] = Field(min_length=1)
     activation_fingerprint: Annotated[str, StringConstraints(pattern=r"^[a-f0-9]{64}$")]
+    region_selection: TacticalRegionSelection
+    incident_context: TacticalIncidentContext
+    bridge_provenance: TacticalBridgeProvenance
+    provenance_notes: list[NonEmptyString] = Field(default_factory=list)
     incident_packet: IncidentPacket
 
     _validate_activation_time = field_validator("activation_time_utc")(_ensure_utc)
@@ -512,12 +649,42 @@ class TacticalActivation(Phase1ContractModel):
     def _validate_packet_reference(self) -> TacticalActivation:
         if self.incident_packet_id != self.incident_packet.packet_id:
             raise ValueError("incident_packet_id must match incident_packet.packet_id")
+        if self.region_bundle_id != self.region_selection.region_bundle_id:
+            raise ValueError("region_bundle_id must match region_selection.region_bundle_id")
+        if self.incident_packet.incident_id != self.incident_context.incident_id:
+            raise ValueError("incident_context.incident_id must match incident_packet.incident_id")
+        if self.incident_packet.target_cell_id != self.incident_context.target_cell_id:
+            raise ValueError(
+                "incident_context.target_cell_id must match incident_packet.target_cell_id"
+            )
+        if self.incident_packet.recommended_action != self.incident_context.recommended_action:
+            raise ValueError(
+                "incident_context.recommended_action must match "
+                "incident_packet.recommended_action"
+            )
+        if self.bridge_provenance.source_packet_id != self.incident_packet.packet_id:
+            raise ValueError(
+                "bridge_provenance.source_packet_id must match incident_packet.packet_id"
+            )
+        if self.activation_time_utc < self.incident_packet.downlink_time_utc:
+            raise ValueError(
+                "activation_time_utc must be greater than or equal to downlink_time_utc"
+            )
+        expected_delay = int(
+            (self.activation_time_utc - self.incident_packet.downlink_time_utc).total_seconds()
+        )
+        if expected_delay != self.incident_context.activation_delay_seconds:
+            raise ValueError(
+                "incident_context.activation_delay_seconds must match activation_time_utc "
+                "minus incident_packet.downlink_time_utc"
+            )
         return self
 
 
 class TacticalScenarioManifest(Phase1ContractModel):
     tactical_manifest_id: NamespacedId
     activation_id: NamespacedId
+    activation_fingerprint: Annotated[str, StringConstraints(pattern=r"^[a-f0-9]{64}$")]
     incident_packet_id: NamespacedId
     region_bundle_id: NamespacedId
     scenario_family: NonEmptyString
@@ -525,8 +692,14 @@ class TacticalScenarioManifest(Phase1ContractModel):
     decision_interval_seconds: int = Field(ge=1)
     time_window: TimeWindow
     incident_packet: IncidentPacket
+    region_selection: TacticalRegionSelection
+    incident_context: TacticalIncidentContext
+    bridge_provenance: TacticalBridgeProvenance
     dispatch_units: list[DispatchUnit] = Field(min_length=1)
     facilities: list[Facility] = Field(min_length=1)
+    depot_assignments: list[TacticalDepotAssignment] = Field(min_length=1)
+    scout_assets: list[ScoutAsset] = Field(default_factory=list)
+    overlay_events: list[TacticalOverlayEvent] = Field(default_factory=list)
     operational_objectives: list[NonEmptyString] = Field(min_length=1)
     config: TacticalScenarioConfig
 
@@ -534,6 +707,53 @@ class TacticalScenarioManifest(Phase1ContractModel):
     def _validate_packet_reference(self) -> TacticalScenarioManifest:
         if self.incident_packet_id != self.incident_packet.packet_id:
             raise ValueError("incident_packet_id must match incident_packet.packet_id")
+        if self.region_bundle_id != self.region_selection.region_bundle_id:
+            raise ValueError("region_bundle_id must match region_selection.region_bundle_id")
+        if self.incident_packet.incident_id != self.incident_context.incident_id:
+            raise ValueError("incident_context.incident_id must match incident_packet.incident_id")
+        if self.incident_packet.target_cell_id != self.incident_context.target_cell_id:
+            raise ValueError(
+                "incident_context.target_cell_id must match incident_packet.target_cell_id"
+            )
+        if self.bridge_provenance.source_packet_id != self.incident_packet.packet_id:
+            raise ValueError(
+                "bridge_provenance.source_packet_id must match incident_packet.packet_id"
+            )
+        facility_ids = {facility.facility_id for facility in self.facilities}
+        unit_ids = {unit.unit_id for unit in self.dispatch_units}
+        for unit in self.dispatch_units:
+            if unit.home_facility_id not in facility_ids:
+                raise ValueError(
+                    f"dispatch unit {unit.unit_id} references unknown home facility "
+                    f"{unit.home_facility_id}"
+                )
+            if (
+                unit.current_facility_id is not None
+                and unit.current_facility_id not in facility_ids
+            ):
+                raise ValueError(
+                    f"dispatch unit {unit.unit_id} references unknown current facility "
+                    f"{unit.current_facility_id}"
+                )
+        for assignment in self.depot_assignments:
+            if assignment.unit_id not in unit_ids:
+                raise ValueError(
+                    f"depot assignment references unknown dispatch unit {assignment.unit_id}"
+                )
+            if assignment.depot_facility_id not in facility_ids:
+                raise ValueError(
+                    "depot assignment references unknown facility "
+                    f"{assignment.depot_facility_id}"
+                )
+        for scout_asset in self.scout_assets:
+            if (
+                scout_asset.home_facility_id is not None
+                and scout_asset.home_facility_id not in facility_ids
+            ):
+                raise ValueError(
+                    f"scout asset {scout_asset.scout_asset_id} references unknown home facility "
+                    f"{scout_asset.home_facility_id}"
+                )
         return self
 
 
@@ -542,6 +762,7 @@ class TacticalScenarioBundle(Phase1ContractModel):
     bundle_fingerprint: Annotated[str, StringConstraints(pattern=r"^[a-f0-9]{64}$")]
     tactical_manifest_id: NamespacedId
     activation_id: NamespacedId
+    activation_fingerprint: Annotated[str, StringConstraints(pattern=r"^[a-f0-9]{64}$")]
     incident_packet_id: NamespacedId
     region_bundle_id: NamespacedId
     scenario_family: NonEmptyString
@@ -549,8 +770,15 @@ class TacticalScenarioBundle(Phase1ContractModel):
     decision_interval_seconds: int = Field(ge=1)
     time_window: TimeWindow
     incident_packet: IncidentPacket
+    region_selection: TacticalRegionSelection
+    incident_context: TacticalIncidentContext
+    bridge_provenance: TacticalBridgeProvenance
     dispatch_units: list[DispatchUnit] = Field(min_length=1)
     facilities: list[Facility] = Field(min_length=1)
+    depot_assignments: list[TacticalDepotAssignment] = Field(min_length=1)
+    scout_assets: list[ScoutAsset] = Field(default_factory=list)
+    overlay_events: list[TacticalOverlayEvent] = Field(default_factory=list)
+    operational_objectives: list[NonEmptyString] = Field(min_length=1)
     route_plans: list[RoutePlan]
     config: TacticalScenarioConfig
     compilation: BundleCompilation
@@ -559,6 +787,47 @@ class TacticalScenarioBundle(Phase1ContractModel):
     def _validate_packet_reference(self) -> TacticalScenarioBundle:
         if self.incident_packet_id != self.incident_packet.packet_id:
             raise ValueError("incident_packet_id must match incident_packet.packet_id")
+        if self.region_bundle_id != self.region_selection.region_bundle_id:
+            raise ValueError("region_bundle_id must match region_selection.region_bundle_id")
+        if self.incident_packet.incident_id != self.incident_context.incident_id:
+            raise ValueError("incident_context.incident_id must match incident_packet.incident_id")
+        if self.incident_packet.target_cell_id != self.incident_context.target_cell_id:
+            raise ValueError(
+                "incident_context.target_cell_id must match incident_packet.target_cell_id"
+            )
+        if self.bridge_provenance.source_packet_id != self.incident_packet.packet_id:
+            raise ValueError(
+                "bridge_provenance.source_packet_id must match incident_packet.packet_id"
+            )
+        facility_ids = {facility.facility_id for facility in self.facilities}
+        unit_ids = {unit.unit_id for unit in self.dispatch_units}
+        for assignment in self.depot_assignments:
+            if assignment.unit_id not in unit_ids:
+                raise ValueError(
+                    f"depot assignment references unknown dispatch unit {assignment.unit_id}"
+                )
+            if assignment.depot_facility_id not in facility_ids:
+                raise ValueError(
+                    "depot assignment references unknown facility "
+                    f"{assignment.depot_facility_id}"
+                )
+        for route_plan in self.route_plans:
+            if route_plan.unit_id not in unit_ids:
+                raise ValueError(
+                    f"route plan {route_plan.route_plan_id} references unknown unit "
+                    f"{route_plan.unit_id}"
+                )
+            if route_plan.origin_facility_id not in facility_ids:
+                raise ValueError(
+                    f"route plan {route_plan.route_plan_id} references unknown origin facility "
+                    f"{route_plan.origin_facility_id}"
+                )
+            if route_plan.destination_facility_id not in facility_ids:
+                raise ValueError(
+                    "route plan "
+                    f"{route_plan.route_plan_id} references unknown destination facility "
+                    f"{route_plan.destination_facility_id}"
+                )
         return self
 
 

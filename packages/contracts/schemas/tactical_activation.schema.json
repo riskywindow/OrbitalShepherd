@@ -13,6 +13,9 @@
     "activation_reason",
     "requested_capabilities",
     "activation_fingerprint",
+    "region_selection",
+    "incident_context",
+    "bridge_provenance",
     "incident_packet"
   ],
   "properties": {
@@ -46,6 +49,22 @@
     "activation_fingerprint": {
       "type": "string",
       "pattern": "^[a-f0-9]{64}$"
+    },
+    "region_selection": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalRegionSelection"
+    },
+    "incident_context": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalIncidentContext"
+    },
+    "bridge_provenance": {
+      "$ref": "orbital-shepherd://contracts/v1.0/common.schema.json#/$defs/tacticalBridgeProvenance"
+    },
+    "provenance_notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "incident_packet": {
       "$ref": "orbital-shepherd://contracts/v1.0/incident_packet.schema.json"

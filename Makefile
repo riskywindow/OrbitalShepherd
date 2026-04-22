@@ -17,7 +17,7 @@ PHASE2_BASELINE_ID ?= urgency_greedy
 PHASE3_ROUTING_COMPOSE_FILE ?= infra/compose/phase3-routing.compose.yaml
 PHASE3_ROUTING_DSN ?= postgresql://orbital:orbital@127.0.0.1:55432/orbital_shepherd_phase3
 
-.PHONY: lint typecheck test contracts-validate scenario-pack-build scenario-pack-validate benchmark-run api-dev web-install web-dev web-build web-lint web-format-check phase1-prepare phase1-verify phase2-config-validate phase2-split-build phase2-pack-build phase2-pack-validate phase2-dataset-build phase2-bc-train phase2-ppo-train phase2-smoke phase2-train phase2-eval phase2-demo phase2-demo-prepare phase3-routing-up phase3-routing-down phase3-routing-bootstrap phase3-routing-ingest-fixture phase3-routing-smoke demo quickstart check
+.PHONY: lint typecheck test contracts-validate scenario-pack-build scenario-pack-validate benchmark-run api-dev web-install web-dev web-build web-lint web-format-check phase1-prepare phase1-verify phase2-config-validate phase2-split-build phase2-pack-build phase2-pack-validate phase2-dataset-build phase2-bc-train phase2-ppo-train phase2-smoke phase2-train phase2-eval phase2-demo phase2-demo-prepare phase3-routing-up phase3-routing-down phase3-routing-bootstrap phase3-routing-ingest-fixture phase3-routing-smoke phase3-tactical-pack-build phase3-tactical-pack-validate demo quickstart check
 
 lint:
 	ruff check apps/api/src packages tests
@@ -113,6 +113,12 @@ phase3-routing-ingest-fixture:
 
 phase3-routing-smoke:
 	$(PYTHON) scripts/phase3_routing.py --dsn $(PHASE3_ROUTING_DSN) smoke
+
+phase3-tactical-pack-build:
+	$(PYTHON) scripts/build_tactical_scenario_pack.py
+
+phase3-tactical-pack-validate:
+	$(PYTHON) scripts/validate_tactical_scenario_pack.py
 
 demo quickstart:
 	$(PYTHON) scripts/phase1_demo.py serve

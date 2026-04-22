@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "packet_id": "pkt:inc-osbench-phase3-tactical-v1-foothill_access-seed-4101:0001",
+  "incident_id": "inc:osbench-phase3-tactical-v1:foothill_access:seed-4101",
+  "target_cell_id": "tc:8928308280fffff",
+  "observation_time_utc": "2026-08-14T03:30:00Z",
+  "downlink_time_utc": "2026-08-14T03:41:00Z",
+  "confidence": 0.82,
+  "urgency_score": 0.72,
+  "recommended_action": "dispatch_ground",
+  "observation_opportunity_id": "opp:foothill_access:tc-8928308280fffff:seed-4101",
+  "downstream_value_estimate": 0.81,
+  "summary": "Foothill Access packet variant 1 for deterministic tactical compilation."
+}
